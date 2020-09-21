@@ -1,5 +1,6 @@
 #pragma once
 #include <Windows.h>
+#include <stdio.h>
 
 class ASCIIRenderer
 {
@@ -9,11 +10,12 @@ public:
 
 		m_hOutput = (HANDLE)GetStdHandle(STD_OUTPUT_HANDLE);
 
-		GetConsoleScreenBufferInfo(m_hOutput, &m_screen);
-
 		m_dwBufferSize = { width, height };
 		m_dwBufferCoord = { 0, 0 };
-		m_rcRegion = { 0, 0, width - 1, width - 1 };
+		m_rcRegion = { 0, 0, width - 1, height - 1 };
+
+		SetConsoleWindowInfo(m_hOutput, true, &m_rcRegion);
+		SetConsoleScreenBufferSize(m_hOutput, m_dwBufferSize);
 
 		// 1D array, use width to get item at specific row.
 		m_buffer = new CHAR_INFO[m_dwBufferSize.X * m_dwBufferSize.Y];
@@ -21,20 +23,6 @@ public:
 
 	~ASCIIRenderer() {
 		delete[] m_buffer;
-	}
-
-	void clear() {
-		COORD topLeft = { 0, 0 };
-		DWORD written;
-
-		FillConsoleOutputCharacterA(
-			m_hOutput, ' ', m_screen.dwSize.X * m_screen.dwSize.Y, topLeft, &written
-		);
-		FillConsoleOutputAttribute(
-			m_hOutput, FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_BLUE,
-			m_screen.dwSize.X * m_screen.dwSize.Y, topLeft, &written
-		);
-		SetConsoleCursorPosition(m_hOutput, topLeft);
 	}
 
 	void Render() {
@@ -65,7 +53,6 @@ public:
 
 private:
 	HANDLE m_hOutput;
-	CONSOLE_SCREEN_BUFFER_INFO m_screen;
 	COORD m_dwBufferSize;
 	COORD m_dwBufferCoord;
 	SMALL_RECT m_rcRegion;
