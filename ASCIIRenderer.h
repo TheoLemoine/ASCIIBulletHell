@@ -1,11 +1,11 @@
 #pragma once
 #include <Windows.h>
-#include <stdio.h>
 
 class ASCIIRenderer
 {
 
 public:
+
 	ASCIIRenderer(SHORT width, SHORT height) {
 
 		m_hOutput = (HANDLE)GetStdHandle(STD_OUTPUT_HANDLE);
@@ -19,6 +19,39 @@ public:
 
 		// 1D array, use width to get item at specific row.
 		m_buffer = new CHAR_INFO[m_dwBufferSize.X * m_dwBufferSize.Y];
+
+		// get size of the user screen
+		RECT desktop;
+		const HWND hwndDesktop = GetDesktopWindow();
+		GetWindowRect(hwndDesktop, &desktop);
+
+		// get size of window console
+		RECT console;
+		HWND hwndConsole = GetConsoleWindow();
+		GetWindowRect(hwndConsole, &console);
+
+		// center console in desktop
+		SetWindowPos(hwndConsole, HWND_TOPMOST, desktop.right / 2 - console.right / 2, desktop.bottom / 2 - console.bottom / 2, 0, 0, SWP_NOSIZE);
+
+		// set window style
+		SetWindowLongPtr(hwndConsole, GWL_STYLE, WS_BORDER | WS_VISIBLE);
+
+		// clear any previous
+		COORD topLeft = { 0, 0 };
+		DWORD written;
+
+		FillConsoleOutputCharacterA(
+			m_hOutput, ' ', m_dwBufferSize.X * m_dwBufferSize.Y, topLeft, &written
+		);
+		FillConsoleOutputAttribute(
+			m_hOutput, FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_BLUE,
+			m_dwBufferSize.X * m_dwBufferSize.Y, topLeft, &written
+		);
+		SetConsoleCursorPosition(m_hOutput, topLeft);
+
+		// Initialize buffer
+		ReadConsoleOutput(m_hOutput, m_buffer, m_dwBufferSize, m_dwBufferCoord, &m_rcRegion);
+
 	}
 
 	~ASCIIRenderer() {
@@ -26,8 +59,6 @@ public:
 	}
 
 	void Render() {
-
-		ReadConsoleOutput(m_hOutput, m_buffer, m_dwBufferSize, m_dwBufferCoord, &m_rcRegion);
 
 		SetAt(0, 0, 'H', 0x0E);
 		SetAt(0, m_dwBufferSize.Y - 1, 'H', 0x0E);

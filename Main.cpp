@@ -5,7 +5,7 @@ using namespace std;
 
 int main() {
 
-	ASCIIRenderer renderer(80, 40);
+	ASCIIRenderer renderer(90, 40);
 	while (true)
 	{
 		renderer.Render();
