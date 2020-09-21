@@ -8,18 +8,6 @@ public:
 
 	ASCIIRenderer(SHORT width, SHORT height) {
 
-		m_hOutput = (HANDLE)GetStdHandle(STD_OUTPUT_HANDLE);
-
-		m_dwBufferSize = { width, height };
-		m_dwBufferCoord = { 0, 0 };
-		m_rcRegion = { 0, 0, width - 1, height - 1 };
-
-		SetConsoleWindowInfo(m_hOutput, true, &m_rcRegion);
-		SetConsoleScreenBufferSize(m_hOutput, m_dwBufferSize);
-
-		// 1D array, use width to get item at specific row.
-		m_buffer = new CHAR_INFO[m_dwBufferSize.X * m_dwBufferSize.Y];
-
 		// get size of the user screen
 		RECT desktop;
 		const HWND hwndDesktop = GetDesktopWindow();
@@ -30,27 +18,26 @@ public:
 		HWND hwndConsole = GetConsoleWindow();
 		GetWindowRect(hwndConsole, &console);
 
-		// center console in desktop
-		SetWindowPos(hwndConsole, HWND_TOPMOST, desktop.right / 2 - console.right / 2, desktop.bottom / 2 - console.bottom / 2, 0, 0, SWP_NOSIZE);
-
 		// set window style
 		SetWindowLongPtr(hwndConsole, GWL_STYLE, WS_BORDER | WS_VISIBLE);
 
-		// clear any previous
-		COORD topLeft = { 0, 0 };
-		DWORD written;
+		// get std handle and console buffer
+		m_hOutput = (HANDLE)GetStdHandle(STD_OUTPUT_HANDLE);
+		m_dwBufferSize = { width, height };
+		m_dwBufferCoord = { 0, 0 };
+		m_rcRegion = { 0, 0, width - 1, height - 1 };
 
-		FillConsoleOutputCharacterA(
-			m_hOutput, ' ', m_dwBufferSize.X * m_dwBufferSize.Y, topLeft, &written
-		);
-		FillConsoleOutputAttribute(
-			m_hOutput, FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_BLUE,
-			m_dwBufferSize.X * m_dwBufferSize.Y, topLeft, &written
-		);
-		SetConsoleCursorPosition(m_hOutput, topLeft);
+		SetConsoleWindowInfo(m_hOutput, true, &m_rcRegion);
+		SetConsoleScreenBufferSize(m_hOutput, m_dwBufferSize);
+
+		// 1D array, use width to get item at specific row.
+		m_buffer = new CHAR_INFO[m_dwBufferSize.X * m_dwBufferSize.Y];
 
 		// Initialize buffer
 		ReadConsoleOutput(m_hOutput, m_buffer, m_dwBufferSize, m_dwBufferCoord, &m_rcRegion);
+
+		// center console in desktop
+		SetWindowPos(hwndConsole, HWND_TOPMOST, desktop.right / 2 - console.right / 2, desktop.bottom / 2 - console.bottom / 2, 0, 0, SWP_NOSIZE);
 
 	}
 
