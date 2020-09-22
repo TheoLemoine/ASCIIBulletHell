@@ -42,4 +42,28 @@ public:
 	{
 		return IsPress(VK_ESCAPE);
 	}
+
+	void DebugKeyboard(ASCIIRenderer* renderer, int x, int y)
+	{
+		if (UpPress())
+			renderer->SetAt(x, y, 'U', 0x0E);
+		else
+			renderer->SetAt(x, y, ' ', 0x0E);
+		if (DownPress())
+			renderer->SetAt(x + 1, y, 'D', 0x0E);
+		else
+			renderer->SetAt(x + 1, y, ' ', 0x0E);
+		if (LeftPress())
+			renderer->SetAt(x + 2, y, 'L', 0x0E);
+		else
+			renderer->SetAt(x + 2, y, ' ', 0x0E);
+		if (RightPress())
+			renderer->SetAt(x + 3, y, 'R', 0x0E);
+		else
+			renderer->SetAt(x + 3, y, ' ', 0x0E);
+		if (SpacePress())
+			renderer->SetAt(x + 4, y, 'S', 0x0E);
+		else
+			renderer->SetAt(x + 4, y, ' ', 0x0E);
+	}
 };
