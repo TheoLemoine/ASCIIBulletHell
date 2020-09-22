@@ -144,6 +144,8 @@
   <ItemGroup>
     <ClInclude Include="ASCIIRenderer.h" />
     <ClInclude Include="Keyboard.h" />
+    <ClInclude Include="Physic.h" />
+    <ClInclude Include="Starship.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
