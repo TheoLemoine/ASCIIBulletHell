@@ -1,22 +1,45 @@
+struct Vec2
+{
+	float x, y;
+
+	Vec2()
+	{
+		Vec2(0, 0);
+	}
+
+	Vec2(float p_x, float p_y)
+	{
+		x = p_x;
+		y = p_y;
+	}
+
+	Vec2 operator * (float val)
+	{
+		return Vec2(x * val, y * val);
+	}
+
+	void operator += (Vec2 val)
+	{
+		x += val.x;
+		y += val.y;
+	}
+};
 
 class Physic
 {
 public:
-	float x, y;
-	float xSpeed, ySpeed;
-	//TODO COLLIDER
+	Vec2 Position;
+	Vec2 Speed;
+	//TODO COLLIDER with Circle and distance
 
 	Physic(float x, float y)
 	{
-		this->x = x;
-		this->y = y;
-		xSpeed = 0;
-		ySpeed = 0;
+		Position = Vec2(x,y);
+		Speed = Vec2(0, 0);
 	}
 
 	void Move(float deltaTime)
 	{
-		x += xSpeed * deltaTime;
-		y += xSpeed * deltaTime;
+		Position += Speed * deltaTime;
 	}
 };
