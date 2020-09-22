@@ -2,7 +2,7 @@
 #include "GameWorld.h"
 #include "ASCIIRenderer.h"
 #include "GameClock.h"
-#include "Keyboard.h"
+#include "Inputs.h"
 #include "Starship.h"
 
 int main() {
@@ -17,7 +17,7 @@ int main() {
 	ASCIIRenderer renderer(GAME_WIDTH, GAME_HEIGHT);
 
 	// inputs
-	Keyboard keyboard;
+	Inputs keyboard;
 
 	GameWorld world(&renderer, &clock, &keyboard);
 	world.InitWorld();

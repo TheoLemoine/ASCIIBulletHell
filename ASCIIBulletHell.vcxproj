@@ -139,13 +139,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ASCIIRenderer.cpp" />
+    <ClCompile Include="GameClock.cpp" />
+    <ClCompile Include="GameWorld.cpp" />
+    <ClCompile Include="Inputs.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="PhysicComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ASCIIRenderer.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="IEntity.h" />
-    <ClInclude Include="Keyboard.h" />
+    <ClInclude Include="Inputs.h" />
     <ClInclude Include="PhysicComponent.h" />
     <ClInclude Include="PhysicSystem.h" />
     <ClInclude Include="Starship.h" />
