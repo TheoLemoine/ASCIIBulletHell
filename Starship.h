@@ -1,24 +1,31 @@
 #include "Physic.h"
 #include "Keyboard.h"
-class Starship
+#include "IEntity.h"
+
+class Starship: IEntity
 {
 public:
-	Physic* physic;
-	//TODO add renderer
+	void Update(ASCIIRenderer* renderer, Keyboard* keyboard, float deltaTime) {
 
-	void Update(Keyboard* keys,float deltaTime)
-	{
-		if (keys->DownPress())
-			physic->ySpeed = -1;
-		if (keys->UpPress())
-			physic->ySpeed = 1;
-		if (keys->LeftPress())
-			physic->xSpeed = -1;
-		if (keys->RightPress())
-			physic->xSpeed = 1;
+		if (keyboard->DownPress())
+			m_physic->ySpeed = -1;
+		if (keyboard->UpPress())
+			m_physic->ySpeed = 1;
+		if (keyboard->LeftPress())
+			m_physic->xSpeed = -1;
+		if (keyboard->RightPress())
+			m_physic->xSpeed = 1;
+
 	}
 
 	Starship() {
-		physic = new Physic(0,0);
+		m_physic = new Physic(0,0);
 	}
+
+	~Starship() {
+		delete m_physic;
+	}
+
+private:
+	Physic* m_physic;
 };

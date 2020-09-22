@@ -9,7 +9,6 @@ public:
 	Physic(float x, float y)
 	{
 		this->x = x;
-		this->y = y;
 		xSpeed = 0;
 		ySpeed = 0;
 	}

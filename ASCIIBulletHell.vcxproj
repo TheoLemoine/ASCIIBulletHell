@@ -143,6 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ASCIIRenderer.h" />
+    <ClInclude Include="IEntity.h" />
     <ClInclude Include="Keyboard.h" />
     <ClInclude Include="Physic.h" />
     <ClInclude Include="Starship.h" />
