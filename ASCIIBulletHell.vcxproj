@@ -145,6 +145,8 @@
     <ClCompile Include="Inputs.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="PhysicComponent.cpp" />
+    <ClCompile Include="PhysicSystem.cpp" />
+    <ClCompile Include="Starship.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ASCIIRenderer.h" />
