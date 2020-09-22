@@ -1,5 +1,6 @@
 #include <iostream>
 #include "ASCIIRenderer.h"
+#include "Keyboard.h"
 #include "GameClock.h"
 #include "GameWorld.h"
 
