@@ -1,10 +1,9 @@
 #pragma once
-#include "ASCIIRenderer.h"
-#include "Keyboard.h"
 
 class IEntity {
 
 public:
-	virtual void Update(ASCIIRenderer* renderer, Keyboard* keyboard, float deltaTime) = 0;
+	virtual void Init(GameWorld* world) = 0;
+	virtual void Update(float deltaTime) = 0;
 
 };

@@ -2,38 +2,40 @@
 #include "ASCIIRenderer.h"
 #include "Keyboard.h"
 #include "GameClock.h"
+#include "PhysicSystem.h"
 
 // class containing all objects and components to render
 class GameWorld {
 
 public:
 	GameWorld(ASCIIRenderer* renderer, GameClock* clock, Keyboard* keyboard) {
-		m_renderer = renderer;
-		m_clock = clock;
-		m_keyboard = keyboard;
+		Renderer = renderer;
+		Clock = clock;
+		Keyboard = keyboard;
+		Physics = new PhysicSystem();
 	}
 
-	void InitWorld() {
+	PhysicSystem* Physics;
+	ASCIIRenderer* Renderer;
+	GameClock* Clock;
+	Keyboard* Keyboard;
 
+	void InitWorld() {
 	}
 
 	void StartGameLoop() {
-	
+
 		float deltaTime;
 
 		while (true)
 		{
-			deltaTime = m_clock->GetElapsedTimeSinceLastCall();
+			deltaTime = Clock->GetElapsedTimeSinceLastCall();
 
-			m_renderer->Render();
+			Renderer->Render();
 		}
 
 	}
 
 private:
-	ASCIIRenderer* m_renderer;
-	GameClock* m_clock;
-	Keyboard* m_keyboard;
-
 
 };

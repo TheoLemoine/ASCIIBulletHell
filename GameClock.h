@@ -8,24 +8,28 @@ public:
 	static const int MULT_MILISEC = 1000; // get time in miliseconds
 	static const int MULT_MICROSEC = 1; // get time in microseconds
 
-	GameClock() {
+	GameClock()
+	{
 		QueryPerformanceCounter(&m_startTime);
 		m_lastCalledTime = m_startTime;
 		QueryPerformanceFrequency(&m_freqency);
 	}
 
-	void SetMultiplier(int muliplier) {
+	void SetMultiplier(int muliplier)
+	{
 		m_timeMultiplier = muliplier;
 	}
 
-	float GetElapsedTime() {
+	float GetElapsedTime()
+	{
 		LARGE_INTEGER currentTime;
 		QueryPerformanceCounter(&currentTime);
 
 		return (float)(currentTime.QuadPart - m_startTime.QuadPart) / m_timeMultiplier;
 	}
 
-	float GetElapsedTimeSinceLastCall() {
+	float GetElapsedTimeSinceLastCall()
+	{
 		LARGE_INTEGER currentTime;
 		QueryPerformanceCounter(&currentTime);
 

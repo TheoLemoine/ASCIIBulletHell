@@ -143,12 +143,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ASCIIRenderer.h" />
+    <ClInclude Include="Constants.h" />
     <ClInclude Include="IEntity.h" />
     <ClInclude Include="Keyboard.h" />
-    <ClInclude Include="Physic.h" />
+    <ClInclude Include="PhysicComponent.h" />
+    <ClInclude Include="PhysicSystem.h" />
     <ClInclude Include="Starship.h" />
     <ClInclude Include="GameClock.h" />
     <ClInclude Include="GameWorld.h" />
+    <ClInclude Include="Vec2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

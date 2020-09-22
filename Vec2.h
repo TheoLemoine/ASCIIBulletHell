@@ -1,3 +1,5 @@
+#pragma once
+
 struct Vec2
 {
 	float x, y;
@@ -23,23 +25,10 @@ struct Vec2
 		x += val.x;
 		y += val.y;
 	}
-};
 
-class Physic
-{
-public:
-	Vec2 Position;
-	Vec2 Speed;
-	//TODO COLLIDER with Circle and distance
-
-	Physic(float x, float y)
+	Vec2 Clamp(float lower, float upper)
 	{
-		Position = Vec2(x,y);
-		Speed = Vec2(0, 0);
-	}
-
-	void Move(float deltaTime)
-	{
-		Position += Speed * deltaTime;
+		x = min(upper, max(lower, x));
+		y = min(upper, max(lower, y));
 	}
 };

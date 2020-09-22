@@ -1,11 +1,9 @@
+#include "Constants.h"
+#include "GameWorld.h"
 #include "ASCIIRenderer.h"
 #include "GameClock.h"
-#include "GameWorld.h"
 #include "Keyboard.h"
 #include "Starship.h"
-
-const SHORT GAME_WIDTH = 120;
-const SHORT GAME_HEIGHT = 60;
 
 int main() {
 

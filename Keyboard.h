@@ -1,3 +1,4 @@
+#pragma once
 #include <WinUser.h>
 #define VK_KEY_D	0x44                //('D')	D
 #define VK_KEY_Q	0x51                //('Q')	Q

@@ -1,33 +1,29 @@
-#include "Physic.h"
+#include "PhysicSystem.h"
 #include "Keyboard.h"
 #include "IEntity.h"
 
-class Starship: IEntity
+class Starship : IEntity
 {
 public:
-	void Update(ASCIIRenderer* renderer, Keyboard* keyboard, float deltaTime) {
-
-	void Update(Keyboard* keys,float deltaTime)
-	{
-		if (keys->DownPress())
-			physic->Speed.y = -1;
-		if (keys->UpPress())
-			physic->Speed.y = 1;
-		if (keys->LeftPress())
-			physic->Speed.x = -1;
-		if (keys->RightPress())
-			physic->Speed.x = 1;
+	void Init(GameWorld* world) {
+		m_physic = world->Physics->RequestComponent(startX, startY, 0, 0);
+		m_keyboard = world->Keyboard;
 	}
 
-	Starship() { Starship(0, 0);}
-
-	Starship(float x, float y)
-	{
-		physic = new Physic(x, y);
+	void Update(float deltaTime) {
+		if (m_keyboard->DownPress())
+			m_physic->Acceleration.y = -1;
+		if (m_keyboard->UpPress())
+			m_physic->Acceleration.y = 1;
+		if (m_keyboard->LeftPress())
+			m_physic->Acceleration.x = -1;
+		if (m_keyboard->RightPress())
+			m_physic->Acceleration.x = 1;
 	}
 
-	Starship() {
-		m_physic = new Physic(0,0);
+	Starship(float x, float y) {
+		startX = x;
+		startY = y;
 	}
 
 	~Starship() {
@@ -35,5 +31,8 @@ public:
 	}
 
 private:
-	Physic* m_physic;
+	PhysicComponent* m_physic;
+	Keyboard* m_keyboard;
+
+	float startX, startY;
 };
