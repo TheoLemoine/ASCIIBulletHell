@@ -1,6 +1,10 @@
+#pragma once
 #include "PhysicSystem.h"
 #include "Keyboard.h"
 #include "IEntity.h"
+#include "GameWorld.h"
+
+class GameWorld;
 
 class Starship : IEntity
 {

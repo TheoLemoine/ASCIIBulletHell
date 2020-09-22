@@ -1,4 +1,7 @@
 #pragma once
+#include "GameWorld.h"
+
+class GameWorld;
 
 class IEntity {
 
