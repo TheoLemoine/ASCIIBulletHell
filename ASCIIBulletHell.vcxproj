@@ -146,6 +146,8 @@
     <ClInclude Include="Keyboard.h" />
     <ClInclude Include="Physic.h" />
     <ClInclude Include="Starship.h" />
+    <ClInclude Include="GameClock.h" />
+    <ClInclude Include="GameWorld.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

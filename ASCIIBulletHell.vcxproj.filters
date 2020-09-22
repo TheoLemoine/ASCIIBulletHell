@@ -32,5 +32,11 @@
     <ClInclude Include="Starship.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GameClock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameWorld.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
