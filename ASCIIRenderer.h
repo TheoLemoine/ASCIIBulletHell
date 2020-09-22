@@ -8,16 +8,10 @@ public:
 
 	ASCIIRenderer(SHORT width, SHORT height) {
 
-		// get size of the user screen
-		RECT desktop;
-		const HWND hwndDesktop = GetDesktopWindow();
-		GetWindowRect(hwndDesktop, &desktop);
-
-		// get size of window console
-		RECT console;
+		// get the user screen
+		HWND hwndDesktop = GetDesktopWindow();
+		// get console window
 		HWND hwndConsole = GetConsoleWindow();
-		GetWindowRect(hwndConsole, &console);
-
 		// set window style
 		SetWindowLongPtr(hwndConsole, GWL_STYLE, WS_BORDER | WS_VISIBLE);
 
@@ -26,6 +20,15 @@ public:
 		m_dwBufferSize = { width, height };
 		m_dwBufferCoord = { 0, 0 };
 		m_rcRegion = { 0, 0, width - 1, height - 1 };
+
+		// set font style
+		CONSOLE_FONT_INFOEX cfi;
+		cfi.cbSize = sizeof(cfi);
+		cfi.nFont = 0;
+		cfi.dwFontSize.X = 6;                  // Width of each character in the font
+		cfi.dwFontSize.Y = 12;
+		cfi.FontWeight = FW_BOLD;
+		SetCurrentConsoleFontEx(m_hOutput, false, &cfi);
 
 		SetConsoleWindowInfo(m_hOutput, true, &m_rcRegion);
 		SetConsoleScreenBufferSize(m_hOutput, m_dwBufferSize);
@@ -37,7 +40,16 @@ public:
 		ReadConsoleOutput(m_hOutput, m_buffer, m_dwBufferSize, m_dwBufferCoord, &m_rcRegion);
 
 		// center console in desktop
-		SetWindowPos(hwndConsole, HWND_TOPMOST, desktop.right / 2 - console.right / 2, desktop.bottom / 2 - console.bottom / 2, 0, 0, SWP_NOSIZE);
+		RECT desktop;
+		GetWindowRect(hwndDesktop, &desktop);
+
+		RECT console;
+		GetWindowRect(hwndConsole, &console);
+
+		SetWindowPos(hwndConsole, HWND_TOPMOST, 
+			desktop.right / 2 - console.right / 2, // center width
+			desktop.bottom / 2 - console.bottom / 2, // center height
+			0, 0, SWP_NOSIZE);
 
 	}
 
@@ -52,9 +64,6 @@ public:
 		SetAt(m_dwBufferSize.X - 1, 0, 'H', 0x0E);
 		SetAt(m_dwBufferSize.X - 1, m_dwBufferSize.Y - 1, 'H', 0x0E);
 
-		SetAt(5, 10, 'H', 0x0E);
-		SetAt(5, 11, 'i', 0x0B);
-		SetAt(5, 12, '!', 0x0A);
 
 		WriteConsoleOutput(m_hOutput, m_buffer, m_dwBufferSize, m_dwBufferCoord, &m_rcRegion);
 	}
