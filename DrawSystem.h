@@ -17,7 +17,7 @@ public:
 	std::vector<DrawComponent> Components;
 
 	DrawComponent* RequestComponent(PhysicComponent* physic, char sprite);
-	void UpdateComponents(float deltaTime);
+	void UpdateComponents();
 
 private:
 	ASCIIRenderer* m_renderer;

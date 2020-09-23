@@ -1,6 +1,7 @@
 #pragma once
 #include "IEntity.h" // neded for extention
 #include "PhysicComponent.h" // need for vector
+#include "DrawComponent.h"
 
 // forward declaration
 class GameWorld;
@@ -12,7 +13,7 @@ class ASCIIRenderer;
 class Starship : public IEntity
 {
 public:
-	 void Init(GameWorld* world);
+	void Init(GameWorld* world);
 
 	void Update(float deltaTime);
 
@@ -24,8 +25,8 @@ public:
 
 private:
 	PhysicComponent* m_physic;
+	DrawComponent* m_draw;
 	Inputs* m_keyboard;
-	ASCIIRenderer* m_renderer;
 
 	float startX, startY;
 };

@@ -1,6 +1,6 @@
 #pragma once
 //Forward declaration
-class PhysicComponent;
+struct PhysicComponent;
 class IEntity;
 
 class ColliderComponent

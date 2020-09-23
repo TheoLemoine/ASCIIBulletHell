@@ -57,6 +57,17 @@ ASCIIRenderer::~ASCIIRenderer() {
 	delete[] m_buffer;
 }
 
+void ASCIIRenderer::Clear() {
+	for (int i = 0; i < m_dwBufferSize.X; i++)
+	{
+		for (int j = 0; j < m_dwBufferSize.Y; j++)
+		{
+			CHAR_INFO * info = &m_buffer[j * m_dwBufferSize.X + i];
+			info->Char.AsciiChar = ' ';
+		}
+	}
+}
+
 void ASCIIRenderer::Render() {
 
 	SetAt(0, 0, 'H', 0x0E);

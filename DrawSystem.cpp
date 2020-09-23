@@ -20,7 +20,7 @@ DrawComponent* DrawSystem::RequestComponent(PhysicComponent* physic, char sprite
 	return newComponent;
 }
 
-void DrawSystem::UpdateComponents(float deltatime)
+void DrawSystem::UpdateComponents()
 {
 	for (DrawComponent component : Components) {
 		m_renderer->SetAt(

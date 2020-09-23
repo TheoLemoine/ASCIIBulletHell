@@ -6,6 +6,7 @@
 #include "GameClock.h"
 #include "Inputs.h"
 #include "PhysicSystem.h"
+#include "DrawSystem.h"
 #include "Starship.h"
 #include "Constants.h"
 
@@ -15,6 +16,7 @@ GameWorld::GameWorld(ASCIIRenderer* renderer, GameClock* clock, Inputs* keyboard
 	Clock = clock;
 	Keyboard = keyboard;
 	Physics = new PhysicSystem();
+	Drawer = new DrawSystem(Renderer);
 }
 
 GameWorld::~GameWorld() {
@@ -47,8 +49,10 @@ void GameWorld::StartGameLoop() {
 	while (!Keyboard->EchapPress())
 	{
 		deltaTime = Clock->GetElapsedTimeSinceLastCall();
+		Renderer->Clear();
 
 		Physics->UpdateComponents(deltaTime);
+		Drawer->UpdateComponents();
 
 		for (IEntity* entity : Entities) 
 		{
