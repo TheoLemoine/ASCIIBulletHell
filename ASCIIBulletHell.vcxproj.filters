@@ -60,6 +60,9 @@
     <ClCompile Include="Starship.cpp">
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
+    <ClCompile Include="ColliderComponent.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ASCIIRenderer.h">
@@ -91,6 +94,9 @@
     </ClInclude>
     <ClInclude Include="Inputs.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ColliderComponent.h">
+      <Filter>Header Files\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

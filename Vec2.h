@@ -26,7 +26,7 @@ struct Vec2
 		y += val.y;
 	}
 
-	Vec2 Clamp(float lower, float upper)
+	void Clamp(float lower, float upper)
 	{
 		x = min(upper, max(lower, x));
 		y = min(upper, max(lower, y));
