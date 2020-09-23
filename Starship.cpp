@@ -30,12 +30,8 @@ void Starship::Update(float deltaTime) {
 	if (m_keyboard->RightPress())
 		m_physic->Acceleration.x = 1;
 
-	std::cout 
-		<< m_physic->Position.x << ' ' << m_physic->Position.y << ' '
-		<< m_physic->Velocity.x << ' ' << m_physic->Velocity.y << ' '
-		<< m_physic->Acceleration.x << ' ' << m_physic->Acceleration.y << ' '
-	<< std::endl;
-
+	//TODO REMOVE RENDERER EACH FRAME
+	//TODO MOVE TO RENDERER WHILE
 	m_renderer->SetAt(
 		m_physic->Position.x,
 		m_physic->Position.y,
