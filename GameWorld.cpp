@@ -44,7 +44,7 @@ void GameWorld::StartGameLoop() {
 
 	float deltaTime;
 
-	while (true)
+	while (!Keyboard->EchapPress())
 	{
 		deltaTime = Clock->GetElapsedTimeSinceLastCall();
 

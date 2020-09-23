@@ -16,6 +16,8 @@ public:
 
 	void Update(float deltaTime);
 
+	void Shoot();
+
 	Starship(float x, float y);
 
 	~Starship();
