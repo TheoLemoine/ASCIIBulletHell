@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ASCIIRenderer.cpp" />
+    <ClCompile Include="ColliderComponent.cpp" />
     <ClCompile Include="GameClock.cpp" />
     <ClCompile Include="GameWorld.cpp" />
     <ClCompile Include="Inputs.cpp" />
@@ -151,6 +152,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ASCIIRenderer.h" />
+    <ClInclude Include="ColliderComponent.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="IEntity.h" />
     <ClInclude Include="Inputs.h" />
