@@ -11,23 +11,43 @@ DrawSystem::DrawSystem(ASCIIRenderer* renderer)
 	m_renderer = renderer;
 }
 
-DrawComponent* DrawSystem::RequestComponent(PhysicComponent* physic, char sprite)
-{
-	DrawComponent* newComponent = new DrawComponent(physic, sprite);
+DrawComponent* DrawSystem::RequestComponent(
+	PhysicComponent* physic,
+	std::vector<std::vector<char>> charMaps,
+	std::vector<std::vector<int>> colorMaps,
+	int width, int height, float period
+) {
+	DrawComponent* newComponent = new DrawComponent(physic, charMaps, colorMaps, width, height, period);
 	
-	Components.push_back(*newComponent);
+	Components.push_back(newComponent);
 
 	return newComponent;
 }
 
-void DrawSystem::UpdateComponents()
+void DrawSystem::UpdateComponents(float deltaTime)
 {
-	for (DrawComponent component : Components) {
-		m_renderer->SetAt(
-			component.Physic->Position.x,
-			component.Physic->Position.y,
-			component.Sprite,
-			0x0E
-		);
+	for (DrawComponent* component : Components) {
+
+		for (int i = 0; i < component->CharMaps[component->currentFrame].size(); i++)
+		{
+			// get character placement and center it
+			int x = i % component->Width - component->Width / 2;
+			int y = i / component->Width - component->Height / 2;
+
+			// place on the map
+			x += component->Physic->Position.x;
+			y += component->Physic->Position.y;
+
+			m_renderer->SetAt(x, y, component->CharMaps[component->currentFrame][i], component->ColorMaps[component->currentFrame][i]);
+		}
+
+		// Could do better
+		component->frameTime += deltaTime;
+		if (component->frameTime > component->framePeriod) {
+			component->currentFrame++;
+			component->frameTime -= component->framePeriod;
+			if (component->currentFrame >= component->CharMaps.size()) component->currentFrame = 0;
+		}
+		
 	}
 }

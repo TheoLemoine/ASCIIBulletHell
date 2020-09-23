@@ -52,7 +52,7 @@ void GameWorld::StartGameLoop() {
 		Renderer->Clear();
 
 		Physics->UpdateComponents(deltaTime);
-		Drawer->UpdateComponents();
+		Drawer->UpdateComponents(deltaTime);
 
 		for (IEntity* entity : Entities) 
 		{

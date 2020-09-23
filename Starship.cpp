@@ -1,4 +1,4 @@
-// header file
+﻿// header file
 #include "Starship.h"
 // dependencies
 #include "IEntity.h"
@@ -9,13 +9,65 @@
 #include "DrawSystem.h"
 #include "Inputs.h"
 #include "GameWorld.h"
+#include "Constants.h"
 
 //temp
 #include <iostream>
 
+constexpr int A_BLCK = 0x00; // all black
+constexpr int B_CYAN = 0x0B; // bright cyan
+constexpr int D_CYAN = 0x03; // dark cyan
+constexpr int B_PRPL = 0x0D; // bright purple
+constexpr int D_PRPL = 0x05; // dark purple
+
 void Starship::Init(GameWorld* world) {
 	m_physic = world->Physics->RequestComponent(startX, startY, 0, 0);
-	m_draw = world->Drawer->RequestComponent(m_physic, 'V');
+
+
+	m_draw = world->Drawer->RequestComponent(m_physic, 
+		// animation sprites
+		{ 
+			{
+				' ', ' ', '^', ' ', ' ',
+				' ', '/', 'H','\\', ' ',
+				'/', 'd', 'W', 'b','\\',
+				' ', '"', ' ', '"', ' ',
+			},
+			{
+				' ', ' ', '^', ' ', ' ',
+				' ', '/', 'H','\\', ' ',
+				'/', 'd', 'W', 'b','\\',
+				' ', 'W', ' ', 'W', ' ',
+			},
+			{
+				' ', ' ', '^', ' ', ' ',
+				' ', '/', 'H','\\', ' ',
+				'/', 'd', 'W', 'b','\\',
+				' ', 'w', ' ', 'w', ' ',
+			}
+		}, 
+		// animation colors
+		{ 
+			{
+				A_BLCK, A_BLCK, D_CYAN, A_BLCK, A_BLCK,
+				A_BLCK, D_CYAN, B_CYAN, D_CYAN, A_BLCK,
+				D_CYAN, B_CYAN, B_CYAN, B_CYAN, D_CYAN,
+				A_BLCK, D_PRPL, A_BLCK, D_PRPL, A_BLCK,
+			},
+			{
+				A_BLCK, A_BLCK, D_CYAN, A_BLCK, A_BLCK,
+				A_BLCK, D_CYAN, B_CYAN, D_CYAN, A_BLCK,
+				D_CYAN, B_CYAN, B_CYAN, B_CYAN, D_CYAN,
+				A_BLCK, B_PRPL, A_BLCK, B_PRPL, A_BLCK,
+			},
+			{
+				A_BLCK, A_BLCK, D_CYAN, A_BLCK, A_BLCK,
+				A_BLCK, D_CYAN, B_CYAN, D_CYAN, A_BLCK,
+				D_CYAN, B_CYAN, B_CYAN, B_CYAN, D_CYAN,
+				A_BLCK, B_PRPL, A_BLCK, B_PRPL, A_BLCK,
+			}
+		},
+	5, 4, 2);
 	m_keyboard = world->Keyboard;
 }
 
