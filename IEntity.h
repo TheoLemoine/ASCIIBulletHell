@@ -1,8 +1,10 @@
 #pragma once
-#include "GameWorld.h"
 
+
+// forward declaration
 class GameWorld;
 
+// class definition
 class IEntity {
 
 public:

@@ -1,16 +1,26 @@
 #pragma once
+#include <vector>
 
-// class containing all objects and components to render
+
+// forward declarations
+class PhysicSystem;
+class ASCIIRenderer;
+class GameClock;
+class Inputs;
+class IEntity;
+
+// class definition
 class GameWorld {
 
 public:
 	GameWorld(ASCIIRenderer* renderer, GameClock* clock, Inputs* keyboard);
+	~GameWorld();
 
 	PhysicSystem* Physics;
 	ASCIIRenderer* Renderer;
 	GameClock* Clock;
 	Inputs* Keyboard;
-	std::vector<IEntity> Entities;
+	std::vector<IEntity*> Entities;
 
 	void InitWorld();
 	void StartGameLoop();

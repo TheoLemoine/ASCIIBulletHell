@@ -1,12 +1,15 @@
 #pragma once
-#include "PhysicSystem.h"
-#include "Keyboard.h"
-#include "IEntity.h"
-#include "GameWorld.h"
+#include "IEntity.h" // neded for extention
+#include "PhysicComponent.h" // need for vector
 
+// forward declaration
 class GameWorld;
+class PhysicComponent;
+class Inputs;
+class ASCIIRenderer;
 
-class Starship : IEntity
+// class definition
+class Starship : public IEntity
 {
 public:
 	void Init(GameWorld* world);
@@ -19,7 +22,8 @@ public:
 
 private:
 	PhysicComponent* m_physic;
-	Keyboard* m_keyboard;
+	Inputs* m_keyboard;
+	ASCIIRenderer* m_renderer;
 
 	float startX, startY;
 };

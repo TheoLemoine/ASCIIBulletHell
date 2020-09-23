@@ -34,6 +34,9 @@
     <Filter Include="Source Files\Systems">
       <UniqueIdentifier>{506b9717-905e-46a1-b583-8fe71423cc84}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Utils">
+      <UniqueIdentifier>{befbe381-a026-4712-8dc8-e2cc713ea94f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -59,6 +62,9 @@
     </ClCompile>
     <ClCompile Include="Starship.cpp">
       <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Vec2.cpp">
+      <Filter>Source Files\Utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1,19 +1,31 @@
+// header file
 #include "PhysicSystem.h"
+// dependencies
+#include "Constants.h"
+#include "PhysicComponent.h"
+// external dependencies
+#include <vector>
+#include <math.h>
+
+//tmp
+#include <iostream>
+
 
 PhysicComponent* PhysicSystem::RequestComponent(float posX, float posY, float velX, float velY)
 {
-	PhysicComponent newComponent(posX, posY, velX, velY);
+	auto newComponent = new PhysicComponent(posX, posY, velX, velY);
 
-	Components.push_back(newComponent);
+	Components.push_back(*newComponent);
 
-	return &newComponent;
+	return newComponent;
 }
 
 void PhysicSystem::UpdateComponents(float deltaTime)
 {
 
-	for (auto component : Components)
+	for (PhysicComponent component : Components)
 	{
+
 		component.Velocity += component.Acceleration * deltaTime;
 
 		component.Velocity.Clamp(-MAX_VELOCITY, MAX_VELOCITY);

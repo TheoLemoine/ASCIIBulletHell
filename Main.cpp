@@ -1,3 +1,4 @@
+// dependencies
 #include "Constants.h"
 #include "GameWorld.h"
 #include "ASCIIRenderer.h"
@@ -19,6 +20,7 @@ int main() {
 	// inputs
 	Inputs keyboard;
 
+	// create and start game
 	GameWorld world(&renderer, &clock, &keyboard);
 	world.InitWorld();
 	world.StartGameLoop();

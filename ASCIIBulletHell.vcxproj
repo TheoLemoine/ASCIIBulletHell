@@ -147,6 +147,7 @@
     <ClCompile Include="PhysicComponent.cpp" />
     <ClCompile Include="PhysicSystem.cpp" />
     <ClCompile Include="Starship.cpp" />
+    <ClCompile Include="Vec2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ASCIIRenderer.h" />

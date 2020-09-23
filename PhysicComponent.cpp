@@ -1,5 +1,8 @@
+// header file
 #include "PhysicComponent.h"
+// dependencies
 #include "Vec2.h"
+
 
 PhysicComponent::PhysicComponent(float posX, float posY, float velX, float velY)
 {

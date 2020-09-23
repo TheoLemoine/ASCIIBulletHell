@@ -1,6 +1,8 @@
 #pragma once
 #include <Windows.h>
 
+
+// class definition
 class ASCIIRenderer
 {
 

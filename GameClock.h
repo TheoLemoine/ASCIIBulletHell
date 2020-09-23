@@ -1,5 +1,8 @@
 #pragma once
+#include <Windows.h>
 
+
+// class definition
 class GameClock {
 
 public:
