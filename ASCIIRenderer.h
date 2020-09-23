@@ -13,6 +13,7 @@ public:
 	~ASCIIRenderer();
 
 	void Render();
+	void Clear();
 
 	CHAR_INFO* GetAt(int x, int y);
 

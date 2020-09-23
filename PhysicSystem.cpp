@@ -33,7 +33,7 @@ void PhysicSystem::UpdateComponents(float deltaTime)
 		// check for bounces on left and right
 		if ((component->Position.x > GAME_WIDTH && component->Velocity.x > 0)
 			|| (component->Position.x < 0 && component->Velocity.x < 0)) {
-			component->Velocity = component->Velocity * -1;
+			component->Velocity.x = component->Velocity.x * -1;
 		}
 
 		// tp from top to bottom and bottom to top

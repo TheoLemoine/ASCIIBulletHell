@@ -3,7 +3,8 @@
 
 
 // forward declarations
-class PhysicSystem;
+class PhysicSystem; 
+class DrawSystem;
 class ASCIIRenderer;
 class GameClock;
 class Inputs;
@@ -17,6 +18,7 @@ public:
 	~GameWorld();
 
 	PhysicSystem* Physics;
+	DrawSystem* Drawer;
 	ASCIIRenderer* Renderer;
 	GameClock* Clock;
 	Inputs* Keyboard;
