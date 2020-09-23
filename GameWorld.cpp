@@ -55,7 +55,7 @@ void GameWorld::StartGameLoop() {
 			entity->Update(deltaTime);
 		}
 
-		//Renderer->Render();
+		Renderer->Render();
 	}
 
 }
