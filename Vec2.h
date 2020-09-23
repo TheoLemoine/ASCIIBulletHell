@@ -1,4 +1,5 @@
 #pragma once
+#include <math.h>
 #define min(a, b) ((a < b) ? a : b)
 #define max(a,b) ((a>b)?a:b)
 
@@ -14,4 +15,8 @@ struct Vec2
 	void Clamp(float lower, float upper);
 	Vec2 operator * (float val);
 	void operator += (Vec2 val);
+	float Dist(Vec2 target)
+	{
+		return sqrt(pow(x - target.x, 2) + pow(y - target.y, 2));
+	}
 };
