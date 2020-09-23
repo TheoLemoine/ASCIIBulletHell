@@ -12,7 +12,7 @@ class ASCIIRenderer;
 class Starship : public IEntity
 {
 public:
-	void Init(GameWorld* world);
+	 void Init(GameWorld* world);
 
 	void Update(float deltaTime);
 
