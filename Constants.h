@@ -8,12 +8,14 @@ const int GAME_HEIGHT = 60;
 const float MAX_VELOCITY = 20;
 
 //SPACESHIP
-const float SS_ACCELERATION_POWER = 10;
+const float SS_ACCELERATION_POWER = 7.5;
 const float SS_SIZE = 2;
-const Vec2 SS_SHOOT_POS = Vec2(0,2);
+const Vec2 SS_SHOOT_POS = Vec2(0, -2);
+const float SS_COOLDOWN = 2;
+const float SS_IMMOBILITY = 0.01;
 
 //BULLET
-const float BULLET_SPEED = 10;
+const float BULLET_SPEED = -2.5;
 
 //COLLIDER
 enum Tag { 

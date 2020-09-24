@@ -31,9 +31,9 @@ private:
 	PhysicComponent* m_physic;
 	ColliderComponent* m_collider;
 	DrawComponent* m_draw;
-	ColliderComponent* m_collider;
 	Inputs* m_keyboard;
 	GameWorld* m_world;
 
 	float startX, startY;
+	float m_lastShoot;
 };

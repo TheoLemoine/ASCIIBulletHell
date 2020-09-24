@@ -29,7 +29,7 @@ void Starship::Init(GameWorld* world, float startX, float startY, float velX, fl
 	m_world = world;
 	m_physic = world->Physics->RequestComponent(startX, startY, 0, 0);
 
-	m_collider = world->Colliders->RequestComponent(this,m_physic,SS_SIZE,ColliderComponent::Tag::SPACESHIP);
+	m_collider = world->Colliders->RequestComponent(this,m_physic,SS_SIZE,Tag::SPACESHIP);
 	m_draw = world->Drawer->RequestComponent(m_physic, 
 		// animation sprites
 		{ 
@@ -75,7 +75,7 @@ void Starship::Init(GameWorld* world, float startX, float startY, float velX, fl
 		},
 	5, 4, 2);
 
-	m_collider = world->Collider->RequestComponent(this, m_physic, 2, Tag::SPACESHIP);
+	m_collider = world->Colliders->RequestComponent(this, m_physic, 2, Tag::SPACESHIP);
 	// bind collision event
 	__hook(&ColliderComponent::OnCollision, m_collider, &Starship::HandleCollision);
 
@@ -102,11 +102,13 @@ void Starship::Update(float deltaTime) {
 		m_physic->Acceleration.x = -SS_ACCELERATION_POWER;
 	if (righted || (m_physic->Velocity.x < 0 && !lefted))
 		m_physic->Acceleration.x = SS_ACCELERATION_POWER;
-
+	
+	m_lastShoot -= deltaTime;
 	//Shoot
-	if (m_keyboard->SpacePress())
+	if (m_keyboard->SpacePress() && m_lastShoot <=0)
 	{
 		Shoot();
+		m_lastShoot = SS_COOLDOWN;
 	}
 }
 
@@ -115,7 +117,7 @@ void Starship::Shoot()
 	//TODO INVOKE BULLET
 	Bullet* bullet = new Bullet();
 	Vec2 bulletPos = m_physic->Position + SS_SHOOT_POS;
-	Vec2 bulletSpeed = Vec2(m_physic->Velocity.x,BULLET_SPEED);
+	Vec2 bulletSpeed = Vec2(m_physic->Velocity.x,BULLET_SPEED+m_physic->Velocity.y/2.0);
 	bullet->Init(m_world, bulletPos.x, bulletPos.y, bulletSpeed.x, bulletSpeed.y);
 	m_world->AddEntity(bullet);
 

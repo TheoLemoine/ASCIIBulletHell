@@ -25,7 +25,7 @@ GameWorld::~GameWorld() {
 	// delete all systems
 	delete Physics;
 	delete Drawer;
-	delete Collider;
+	delete Colliders;
 
 	// delete all entities
 	for (IEntity* entity : Entities)
@@ -53,11 +53,12 @@ void GameWorld::StartGameLoop() {
 		Renderer->Clear();
 
 		Physics->UpdateComponents(deltaTime);
+		Colliders->UpdateComponents(deltaTime);
 		Drawer->UpdateComponents(deltaTime);
 
-		for (IEntity* entity : Entities) 
+		for (size_t i = 0; i < Entities.size(); i++)
 		{
-			entity->Update(deltaTime);
+			Entities[i]->Update(deltaTime);
 		}
 
 		Renderer->Render();
@@ -68,5 +69,5 @@ void GameWorld::StartGameLoop() {
 IEntity* GameWorld::AddEntity(IEntity* entity)
 {
 	Entities.push_back(entity);
-		
+	return entity;
 }
