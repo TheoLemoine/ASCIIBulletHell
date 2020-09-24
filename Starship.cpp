@@ -86,6 +86,9 @@ void Starship::Update(float deltaTime) {
 	m_physic->Acceleration.y = 0;
 	m_physic->Acceleration.x = 0;
 
+	if (m_physic->Velocity.Dist(Vec2(0, 0)) <= SS_IMMOBILITY)
+		m_physic->Velocity = Vec2(0, 0);
+
 	bool downed = m_keyboard->DownPress();
 	bool uped = m_keyboard->UpPress();
 	bool righted = m_keyboard->RightPress();
@@ -103,6 +106,7 @@ void Starship::Update(float deltaTime) {
 	if (righted || (m_physic->Velocity.x < 0 && !lefted))
 		m_physic->Acceleration.x = SS_ACCELERATION_POWER;
 	
+
 	m_lastShoot -= deltaTime;
 	//Shoot
 	if (m_keyboard->SpacePress() && m_lastShoot <=0)
@@ -117,7 +121,7 @@ void Starship::Shoot()
 	//TODO INVOKE BULLET
 	Bullet* bullet = new Bullet();
 	Vec2 bulletPos = m_physic->Position + SS_SHOOT_POS;
-	Vec2 bulletSpeed = Vec2(m_physic->Velocity.x,BULLET_SPEED+m_physic->Velocity.y/2.0);
+	Vec2 bulletSpeed = Vec2(m_physic->Velocity.x/SS_BULLET_RATIO_SPEED,BULLET_SPEED+m_physic->Velocity.y/SS_BULLET_RATIO_SPEED);
 	bullet->Init(m_world, bulletPos.x, bulletPos.y, bulletSpeed.x, bulletSpeed.y);
 	m_world->AddEntity(bullet);
 

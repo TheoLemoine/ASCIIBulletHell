@@ -13,6 +13,7 @@ const float SS_SIZE = 2;
 const Vec2 SS_SHOOT_POS = Vec2(0, -2);
 const float SS_COOLDOWN = 2;
 const float SS_IMMOBILITY = 0.01;
+const float SS_BULLET_RATIO_SPEED = 2;
 
 //BULLET
 const float BULLET_SPEED = -2.5;

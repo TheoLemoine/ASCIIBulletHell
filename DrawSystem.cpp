@@ -32,6 +32,9 @@ void DrawSystem::UpdateComponents(float deltaTime)
 		auto& colorFrame = component->ColorMaps[component->currentFrame];
 		for (int i = 0; i < charFrame.size(); i++)
 		{
+			//TRANSPARANCY
+			if (charFrame[i] == ' ') continue;
+
 			// get character placement and center it
 			int x = i % component->Width - component->Width / 2;
 			int y = i / component->Width - component->Height / 2;

@@ -27,11 +27,9 @@ void PhysicSystem::UpdateComponents(float deltaTime)
 		component->Velocity += component->Acceleration * deltaTime;
 
 		component->Velocity.Clamp(-MAX_VELOCITY, MAX_VELOCITY);
-		float speedX = component->Velocity.x;
-		speedX = (speedX < SS_IMMOBILITY && speedX > -1 * SS_IMMOBILITY) ? 0 : speedX;
 
+		float speedX = component->Velocity.x;
 		float speedY = component->Velocity.y / 2;
-		speedY = (speedY < SS_IMMOBILITY && speedY > -1 * SS_IMMOBILITY) ? 0 : speedY;
 
 		component->Position += Vec2(speedX, speedY) * deltaTime;
 
