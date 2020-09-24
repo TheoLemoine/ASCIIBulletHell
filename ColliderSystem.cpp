@@ -16,7 +16,7 @@ void ColliderSystem::UpdateComponents(float deltaTime)
 	{
 		for (ColliderComponent* collider : Components)
 		{
-			if (component->Collide(collider))
+			if (component->Collide(*collider))
 				component->Collision(collider->myTag);
 		}
 	}

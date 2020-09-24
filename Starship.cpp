@@ -9,6 +9,7 @@
 #include "DrawSystem.h"
 #include "Inputs.h"
 #include "GameWorld.h"
+#include "Constants.h"
 
 //temp
 #include <iostream>
@@ -23,23 +24,22 @@ void Starship::Update(float deltaTime) {
 	m_physic->Acceleration.y = 0;
 	m_physic->Acceleration.x = 0;
 
+	bool downed = m_keyboard->DownPress();
+	bool uped = m_keyboard->UpPress();
+	bool righted = m_keyboard->RightPress();
+	bool lefted = m_keyboard->LeftPress();
+
 	//Accelerate up and down
-	if (m_keyboard->DownPress())
-		m_physic->Acceleration.y = 1;
-	else if (m_keyboard->UpPress())
-		m_physic->Acceleration.y = -1;
-	else
-		//Deceleration when not press key
-		m_physic->Acceleration.y = m_physic->Velocity.y * -1;
+	if (downed || (m_physic->Velocity.y < 0 && !uped))
+		m_physic->Acceleration.y = ACCELERATION_POWER;
+	if (uped || (m_physic->Velocity.y > 0 && !downed))
+		m_physic->Acceleration.y = -ACCELERATION_POWER;
 
 	//Accelerate right and left
-	if (m_keyboard->LeftPress())
-		m_physic->Acceleration.x = -1;
-	else if (m_keyboard->RightPress())
-		m_physic->Acceleration.x = 1;
-	else
-		//Deceleration when not press key
-		m_physic->Acceleration.x = m_physic->Velocity.x * -1;
+	if (lefted || (m_physic->Velocity.x > 0 && !righted))
+		m_physic->Acceleration.x = -ACCELERATION_POWER;
+	if (righted || (m_physic->Velocity.x < 0 && !lefted))
+		m_physic->Acceleration.x = ACCELERATION_POWER;
 
 	//Shoot
 	if (m_keyboard->SpacePress())

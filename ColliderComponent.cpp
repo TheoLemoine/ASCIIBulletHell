@@ -1,3 +1,5 @@
+#include "IEntity.h"
+#include "PhysicComponent.h"
 #include "ColliderComponent.h"
 
 ColliderComponent::ColliderComponent(IEntity* gameobject, PhysicComponent* physics, float size, Tag tag)
@@ -50,4 +52,9 @@ void ColliderComponent::Collision(ColliderComponent::Tag colliderTag)
 		}
 		break;
 	}
+}
+
+bool ColliderComponent::Collide(ColliderComponent collider)
+{
+	return (Physic->Dist(*collider.Physic) <= Size + collider.Size);
 }
