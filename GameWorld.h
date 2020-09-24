@@ -28,5 +28,5 @@ public:
 
 	void InitWorld();
 	void StartGameLoop();
-
+	IEntity* AddEntity(IEntity *entity);
 };

@@ -5,6 +5,8 @@
 #include "ASCIIRenderer.h"
 #include "PhysicComponent.h"
 #include "PhysicSystem.h"
+#include "ColliderSystem.h"
+#include "ColliderComponent.h"
 #include "DrawComponent.h"
 #include "DrawSystem.h"
 #include "ColliderComponent.h"
@@ -24,8 +26,10 @@ constexpr int B_PRPL = 0x0D; // bright purple
 constexpr int D_PRPL = 0x05; // dark purple
 
 void Starship::Init(GameWorld* world, float startX, float startY, float velX, float velY) {
+	m_world = world;
 	m_physic = world->Physics->RequestComponent(startX, startY, 0, 0);
 
+	m_collider = world->Colliders->RequestComponent(this,m_physic,SS_SIZE,ColliderComponent::Tag::SPACESHIP);
 	m_draw = world->Drawer->RequestComponent(m_physic, 
 		// animation sprites
 		{ 
@@ -89,15 +93,15 @@ void Starship::Update(float deltaTime) {
 
 	//Accelerate up and down
 	if (downed || (m_physic->Velocity.y < 0 && !uped))
-		m_physic->Acceleration.y = ACCELERATION_POWER;
+		m_physic->Acceleration.y = SS_ACCELERATION_POWER;
 	if (uped || (m_physic->Velocity.y > 0 && !downed))
-		m_physic->Acceleration.y = -ACCELERATION_POWER;
+		m_physic->Acceleration.y = -SS_ACCELERATION_POWER;
 
 	//Accelerate right and left
 	if (lefted || (m_physic->Velocity.x > 0 && !righted))
-		m_physic->Acceleration.x = -ACCELERATION_POWER;
+		m_physic->Acceleration.x = -SS_ACCELERATION_POWER;
 	if (righted || (m_physic->Velocity.x < 0 && !lefted))
-		m_physic->Acceleration.x = ACCELERATION_POWER;
+		m_physic->Acceleration.x = SS_ACCELERATION_POWER;
 
 	//Shoot
 	if (m_keyboard->SpacePress())
@@ -109,7 +113,11 @@ void Starship::Update(float deltaTime) {
 void Starship::Shoot()
 {
 	//TODO INVOKE BULLET
-	Bullet bullet = new Bullet();
+	Bullet* bullet = new Bullet();
+	Vec2 bulletPos = m_physic->Position + SS_SHOOT_POS;
+	Vec2 bulletSpeed = Vec2(m_physic->Velocity.x,BULLET_SPEED);
+	bullet->Init(m_world, bulletPos.x, bulletPos.y, bulletSpeed.x, bulletSpeed.y);
+	m_world->AddEntity(bullet);
 
 }
 

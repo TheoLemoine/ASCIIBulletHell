@@ -16,6 +16,8 @@ constexpr int B_BLUE = FOREGROUND_BLUE | FOREGROUND_INTENSITY;
 
 void Bullet::Init(GameWorld* world, float startX, float startY, float velX, float velY)
 {
+	m_physic = world->Physics->RequestComponent(startX, startY, velX, velY);
+	m_collider = world->Colliders->RequestComponent(this, m_physic, 1, ColliderComponent::Tag::PROJECTILE);
 	m_draw = world->Drawer->RequestComponent(m_physic,
 		// sprites
 		{
@@ -44,8 +46,6 @@ void Bullet::Init(GameWorld* world, float startX, float startY, float velX, floa
 			},
 		},
 	3, 3, 1.5);
-	m_physic = world->Physics->RequestComponent(startX, startY, velX, velY);
-	m_collider = world->Colliders->RequestComponent(this, m_physic, 1, ColliderComponent::Tag::PROJECTILE);
 }
 
 void Bullet::Update(float deltaTime)

@@ -40,10 +40,7 @@ void GameWorld::InitWorld()
 	Starship* player = new Starship(GAME_WIDTH / 2, GAME_HEIGHT / 2);
 	Entities.push_back(player);
 
-	for (IEntity* entity : Entities)
-	{
-		entity->Init(this);
-	}
+	player->Init(this, GAME_WIDTH / 2, GAME_HEIGHT / 2, 0, 0);
 }
 
 void GameWorld::StartGameLoop() {
@@ -66,4 +63,10 @@ void GameWorld::StartGameLoop() {
 		Renderer->Render();
 	}
 
+}
+
+IEntity* GameWorld::AddEntity(IEntity* entity)
+{
+	Entities.push_back(entity);
+		
 }
