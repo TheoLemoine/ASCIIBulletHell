@@ -5,6 +5,7 @@
 // forward declarations
 class PhysicSystem; 
 class DrawSystem;
+class ColliderSystem;
 class ASCIIRenderer;
 class GameClock;
 class Inputs;
@@ -19,6 +20,7 @@ public:
 
 	PhysicSystem* Physics;
 	DrawSystem* Drawer;
+	ColliderSystem* Colliders;
 	ASCIIRenderer* Renderer;
 	GameClock* Clock;
 	Inputs* Keyboard;

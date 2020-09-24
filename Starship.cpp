@@ -10,6 +10,7 @@
 #include "Inputs.h"
 #include "GameWorld.h"
 #include "Constants.h"
+#include "Bullet.h"
 
 //temp
 #include <iostream>
@@ -20,7 +21,7 @@ constexpr int D_CYAN = 0x03; // dark cyan
 constexpr int B_PRPL = 0x0D; // bright purple
 constexpr int D_PRPL = 0x05; // dark purple
 
-void Starship::Init(GameWorld* world) {
+void Starship::Init(GameWorld* world, float startX, float startY, float velX, float velY) {
 	m_physic = world->Physics->RequestComponent(startX, startY, 0, 0);
 
 
@@ -102,6 +103,8 @@ void Starship::Update(float deltaTime) {
 void Starship::Shoot()
 {
 	//TODO INVOKE BULLET
+	Bullet bullet = new Bullet();
+
 }
 
 Starship::Starship(float x, float y) {

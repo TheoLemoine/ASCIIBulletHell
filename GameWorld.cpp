@@ -7,6 +7,7 @@
 #include "Inputs.h"
 #include "PhysicSystem.h"
 #include "DrawSystem.h"
+#include "ColliderSystem.h"
 #include "Starship.h"
 #include "Constants.h"
 
@@ -17,6 +18,7 @@ GameWorld::GameWorld(ASCIIRenderer* renderer, GameClock* clock, Inputs* keyboard
 	Keyboard = keyboard;
 	Physics = new PhysicSystem();
 	Drawer = new DrawSystem(Renderer);
+	Colliders = new ColliderSystem();
 }
 
 GameWorld::~GameWorld() {
