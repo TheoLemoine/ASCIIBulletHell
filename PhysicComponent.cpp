@@ -10,3 +10,9 @@ PhysicComponent::PhysicComponent(float posX, float posY, float velX, float velY)
 	Velocity = Vec2(velX, velY);
 	Acceleration = Vec2(0, 0);
 }
+
+
+float PhysicComponent::Dist(const PhysicComponent& physic)
+{
+	return Position.Dist(physic.Position);
+}

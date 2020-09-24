@@ -11,4 +11,6 @@ public:
 	//TODO COLLIDER with Circle and distance
 
 	PhysicComponent(float posX, float posY, float velX, float velY);
+
+	float Dist(const PhysicComponent& physic);
 };

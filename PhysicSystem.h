@@ -14,5 +14,4 @@ public:
 
 	PhysicComponent* RequestComponent(float posX, float posY, float velX, float velY);
 	void UpdateComponents(float deltaTime);
-
 };
