@@ -12,5 +12,5 @@ public:
 
 	PhysicComponent(float posX, float posY, float velX, float velY);
 
-	float Dist(PhysicComponent physic);
+	float Dist(PhysicComponent* physic);
 };

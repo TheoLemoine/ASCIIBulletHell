@@ -7,6 +7,7 @@
 #include "Inputs.h"
 #include "PhysicSystem.h"
 #include "DrawSystem.h"
+#include "ColliderSystem.h"
 #include "Starship.h"
 #include "Constants.h"
 
@@ -17,11 +18,14 @@ GameWorld::GameWorld(ASCIIRenderer* renderer, GameClock* clock, Inputs* keyboard
 	Keyboard = keyboard;
 	Physics = new PhysicSystem();
 	Drawer = new DrawSystem(Renderer);
+	Collider = new ColliderSystem();
 }
 
 GameWorld::~GameWorld() {
 	// delete all systems
 	delete Physics;
+	delete Drawer;
+	delete Collider;
 
 	// delete all entities
 	for (IEntity* entity : Entities)
@@ -31,8 +35,8 @@ GameWorld::~GameWorld() {
 }
 
 
-void GameWorld::InitWorld() {
-
+void GameWorld::InitWorld() 
+{
 	Starship* player = new Starship(GAME_WIDTH / 2, GAME_HEIGHT / 2);
 	Entities.push_back(player);
 
