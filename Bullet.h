@@ -11,7 +11,7 @@ class Bullet :
     public IEntity
 {
 public:
-	void Init(GameWorld* world, float startX, float startY);
+	void Init(GameWorld* world, float startX, float startY, float velX, float velY);
 	void Update(float deltaTime);
 
 private:

@@ -13,10 +13,8 @@ struct Vec2
 	Vec2(float p_x, float p_y);
 
 	void Clamp(float lower, float upper);
+	Vec2 operator + (Vec2 val);
 	Vec2 operator * (float val);
 	void operator += (Vec2 val);
-	float Dist(Vec2 target)
-	{
-		return sqrt(pow(x - target.x, 2) + pow(y - target.y, 2));
-	}
+	float Dist(Vec2 target);
 };

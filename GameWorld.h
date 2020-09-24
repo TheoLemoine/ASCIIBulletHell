@@ -20,7 +20,7 @@ public:
 
 	PhysicSystem* Physics;
 	DrawSystem* Drawer;
-	ColliderSystem* Collider;
+	ColliderSystem* Colliders;
 	ASCIIRenderer* Renderer;
 	GameClock* Clock;
 	Inputs* Keyboard;
@@ -28,5 +28,5 @@ public:
 
 	void InitWorld();
 	void StartGameLoop();
-
+	IEntity* AddEntity(IEntity *entity);
 };

@@ -8,6 +8,6 @@ class GameWorld;
 class IEntity {
 
 public:
-	virtual void Init(GameWorld* world) = 0;
+	virtual void Init(GameWorld* world, float startX, float startY, float velX, float velY) = 0;
 	virtual void Update(float deltaTime) = 0;
 };
