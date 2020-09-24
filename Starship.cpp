@@ -7,6 +7,8 @@
 #include "PhysicSystem.h"
 #include "DrawComponent.h"
 #include "DrawSystem.h"
+#include "ColliderComponent.h"
+#include "ColliderSystem.h"
 #include "Inputs.h"
 #include "GameWorld.h"
 #include "Constants.h"
@@ -23,7 +25,6 @@ constexpr int D_PRPL = 0x05; // dark purple
 
 void Starship::Init(GameWorld* world, float startX, float startY, float velX, float velY) {
 	m_physic = world->Physics->RequestComponent(startX, startY, 0, 0);
-
 
 	m_draw = world->Drawer->RequestComponent(m_physic, 
 		// animation sprites
@@ -69,6 +70,11 @@ void Starship::Init(GameWorld* world, float startX, float startY, float velX, fl
 			}
 		},
 	5, 4, 2);
+
+	m_collider = world->Collider->RequestComponent(this, m_physic, 2, Tag::SPACESHIP);
+	// bind collision event
+	__hook(&ColliderComponent::OnCollision, m_collider, &Starship::HandleCollision);
+
 	m_keyboard = world->Keyboard;
 }
 
@@ -107,6 +113,11 @@ void Starship::Shoot()
 
 }
 
+void Starship::HandleCollision(ColliderComponent* other) 
+{
+	// check for tag, and handle dying
+}
+
 Starship::Starship(float x, float y) {
 	startX = x;
 	startY = y;
@@ -119,4 +130,8 @@ Starship::Starship(float x, float y) {
 
 Starship::~Starship() {
 	delete m_physic;
+	delete m_draw;
+	delete m_collider;
+
+	__unhook(&ColliderComponent::OnCollision, m_collider, &Starship::HandleCollision);
 }

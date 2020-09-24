@@ -6,6 +6,7 @@
 // forward declaration
 class GameWorld;
 class PhysicComponent;
+class ColliderComponent;
 class Inputs;
 class ASCIIRenderer;
 
@@ -19,6 +20,8 @@ public:
 
 	void Shoot();
 
+	void HandleCollision(ColliderComponent* other);
+
 	Starship(float x, float y);
 
 	~Starship();
@@ -26,6 +29,7 @@ public:
 private:
 	PhysicComponent* m_physic;
 	DrawComponent* m_draw;
+	ColliderComponent* m_collider;
 	Inputs* m_keyboard;
 
 	float startX, startY;

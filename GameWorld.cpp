@@ -24,6 +24,8 @@ GameWorld::GameWorld(ASCIIRenderer* renderer, GameClock* clock, Inputs* keyboard
 GameWorld::~GameWorld() {
 	// delete all systems
 	delete Physics;
+	delete Drawer;
+	delete Collider;
 
 	// delete all entities
 	for (IEntity* entity : Entities)
@@ -33,8 +35,8 @@ GameWorld::~GameWorld() {
 }
 
 
-void GameWorld::InitWorld() {
-
+void GameWorld::InitWorld() 
+{
 	Starship* player = new Starship(GAME_WIDTH / 2, GAME_HEIGHT / 2);
 	Entities.push_back(player);
 

@@ -1,4 +1,6 @@
 #pragma once
+#include "Constants.h"
+
 //Forward declaration
 struct PhysicComponent;
 class IEntity;
@@ -9,10 +11,8 @@ public:
 	PhysicComponent* Physic;
 	IEntity* Entity;
 	float Size;
-	enum Tag { SPACESHIP, PROJECTILE, ENNEMY };
-	Tag myTag;
+	Tag ComponentTag;
 	ColliderComponent(IEntity* gameobject, PhysicComponent* physics, float size, Tag tag);
-	void Collision(Tag colliderTag);
-	bool Collide(ColliderComponent collider);
+	__event void OnCollision(ColliderComponent* other);
 };
 

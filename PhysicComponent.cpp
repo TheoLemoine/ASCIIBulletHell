@@ -12,7 +12,7 @@ PhysicComponent::PhysicComponent(float posX, float posY, float velX, float velY)
 }
 
 
-float PhysicComponent::Dist(PhysicComponent physic)
+float PhysicComponent::Dist(PhysicComponent* physic)
 {
-	return Position.Dist(physic.Position);
+	return Position.Dist(physic->Position);
 }
