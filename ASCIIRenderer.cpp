@@ -64,17 +64,12 @@ void ASCIIRenderer::Clear() {
 		{
 			CHAR_INFO * info = &m_buffer[j * m_dwBufferSize.X + i];
 			info->Char.AsciiChar = ' ';
+			info->Attributes = 0; // all black
 		}
 	}
 }
 
 void ASCIIRenderer::Render() {
-
-	SetAt(0, 0, 'H', 0x0E);
-	SetAt(0, m_dwBufferSize.Y - 1, 'H', 0x0E);
-	SetAt(m_dwBufferSize.X - 1, 0, 'H', 0x0E);
-	SetAt(m_dwBufferSize.X - 1, m_dwBufferSize.Y - 1, 'H', 0x0E);
-
 	WriteConsoleOutput(m_hOutput, m_buffer, m_dwBufferSize, m_dwBufferCoord, &m_rcRegion);
 }
 
