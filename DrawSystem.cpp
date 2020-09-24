@@ -35,8 +35,8 @@ void DrawSystem::UpdateComponents(float deltaTime)
 			int y = i / component->Width - component->Height / 2;
 
 			// place on the map
-			x += component->Physic->Position.x;
-			y += component->Physic->Position.y;
+			x += static_cast<int>(component->Physic->Position.x);
+			y += static_cast<int>(component->Physic->Position.y);
 
 			m_renderer->SetAt(x, y, component->CharMaps[component->currentFrame][i], component->ColorMaps[component->currentFrame][i]);
 		}
