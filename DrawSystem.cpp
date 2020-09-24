@@ -27,8 +27,10 @@ DrawComponent* DrawSystem::RequestComponent(
 void DrawSystem::UpdateComponents(float deltaTime)
 {
 	for (DrawComponent* component : Components) {
-
-		for (int i = 0; i < component->CharMaps[component->currentFrame].size(); i++)
+		
+		auto& charFrame = component->CharMaps[component->currentFrame];
+		auto& colorFrame = component->ColorMaps[component->currentFrame];
+		for (int i = 0; i < charFrame.size(); i++)
 		{
 			// get character placement and center it
 			int x = i % component->Width - component->Width / 2;
@@ -38,7 +40,7 @@ void DrawSystem::UpdateComponents(float deltaTime)
 			x += static_cast<int>(component->Physic->Position.x);
 			y += static_cast<int>(component->Physic->Position.y);
 
-			m_renderer->SetAt(x, y, component->CharMaps[component->currentFrame][i], component->ColorMaps[component->currentFrame][i]);
+			m_renderer->SetAt(x, y, charFrame[i], colorFrame[i]);
 		}
 
 		// Could do better
