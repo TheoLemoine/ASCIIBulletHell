@@ -145,6 +145,7 @@
     <ClCompile Include="ColliderSystem.cpp" />
     <ClCompile Include="DrawComponent.cpp" />
     <ClCompile Include="DrawSystem.cpp" />
+    <ClCompile Include="Ennemy.cpp" />
     <ClCompile Include="GameClock.cpp" />
     <ClCompile Include="GameWorld.cpp" />
     <ClCompile Include="Inputs.cpp" />
@@ -162,6 +163,7 @@
     <ClInclude Include="Constants.h" />
     <ClInclude Include="DrawComponent.h" />
     <ClInclude Include="DrawSystem.h" />
+    <ClInclude Include="Ennemy.h" />
     <ClInclude Include="IEntity.h" />
     <ClInclude Include="Inputs.h" />
     <ClInclude Include="PhysicComponent.h" />

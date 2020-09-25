@@ -3,6 +3,7 @@
 #include "Constants.h"
 
 struct ColliderComponent;
+class IEntity;
 
 class ColliderSystem
 {

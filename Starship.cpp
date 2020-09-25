@@ -19,12 +19,6 @@
 //temp
 #include <iostream>
 
-constexpr int A_BLCK = 0x00; // all black
-constexpr int B_CYAN = 0x0B; // bright cyan
-constexpr int D_CYAN = 0x03; // dark cyan
-constexpr int B_PRPL = 0x0D; // bright purple
-constexpr int D_PRPL = 0x05; // dark purple
-
 void Starship::Init(GameWorld* world, float startX, float startY, float velX, float velY) {
 	m_world = world;
 	m_physic = world->Physics->RequestComponent(startX, startY, 0, 0);

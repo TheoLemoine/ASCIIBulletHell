@@ -10,10 +10,6 @@
 
 #include "Bullet.h"
 
-constexpr int A_BLCK = 0x00;
-constexpr int D_BLUE = FOREGROUND_BLUE;
-constexpr int B_BLUE = FOREGROUND_BLUE | FOREGROUND_INTENSITY;
-
 void Bullet::Init(GameWorld* world, float startX, float startY, float velX, float velY)
 {
 	m_physic = world->Physics->RequestComponent(startX, startY, velX, velY);
