@@ -1,22 +1,29 @@
 // header file
 #include "PhysicSystem.h"
-// dependencies
-#include "Constants.h"
+
 #include "PhysicComponent.h"
-// external dependencies
-#include <vector>
+#include "Constants.h"
 #include <math.h>
 
-//tmp
-#include <iostream>
 
 
-PhysicComponent* PhysicSystem::RequestComponent(float posX, float posY, float velX, float velY)
+PhysicComponent* PhysicSystem::RequestComponent(double posX, double posY, double velX, double velY)
 {
 	PhysicComponent* newComponent = new PhysicComponent(posX, posY, velX, velY);
 
 	Components.push_back(newComponent);
 	return newComponent;
+}
+
+void PhysicSystem::DeleteComponent(PhysicComponent* physicPointer)
+{
+	for (auto iter = Components.begin(); iter != Components.end(); ++iter)
+	{
+		if (*iter == physicPointer) {
+			delete physicPointer;
+			Components.erase(iter);
+		}
+	}
 }
 
 void PhysicSystem::UpdateComponents(float deltaTime)
@@ -28,8 +35,8 @@ void PhysicSystem::UpdateComponents(float deltaTime)
 
 		component->Velocity.Clamp(-MAX_VELOCITY, MAX_VELOCITY);
 
-		float speedX = component->Velocity.x;
-		float speedY = component->Velocity.y / 2;
+		double speedX = component->Velocity.x;
+		double speedY = component->Velocity.y / 2;
 
 		component->Position += Vec2(speedX, speedY) * deltaTime;
 
@@ -41,7 +48,7 @@ void PhysicSystem::UpdateComponents(float deltaTime)
 
 		// tp from top to bottom and bottom to top
 		if (component->Position.y > GAME_HEIGHT || component->Position.y < 0) {
-			component->Position.y = fmod(component->Position.y + GAME_HEIGHT, GAME_HEIGHT);
+			component->Position.y = fmod(component->Position.y + (double)GAME_HEIGHT, GAME_HEIGHT);
 		}
 	}
 

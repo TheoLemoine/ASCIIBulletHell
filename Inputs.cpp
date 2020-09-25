@@ -1,14 +1,13 @@
 // header file
 #include "Inputs.h"
-// dependencies
+
 #include "ASCIIRenderer.h"
-// external dependencies
 #include <WinUser.h>
 
-#define VK_KEY_D	0x44                //('D')	D
-#define VK_KEY_Q	0x51                //('Q')	Q
-#define VK_KEY_S	0x53                //('S')	S
-#define VK_KEY_Z	0x5A                //('Z')	Z
+constexpr int VK_KEY_D = 0x44;
+constexpr int VK_KEY_Q = 0x51;
+constexpr int VK_KEY_S = 0x53;
+constexpr int VK_KEY_Z = 0x5A;
 
 
 bool Inputs::IsPress(int vkey)

@@ -1,15 +1,19 @@
 //header file
 #include "GameWorld.h"
-// dependencies
-#include "ASCIIRenderer.h"
-#include "IEntity.h"
-#include "GameClock.h"
-#include "Inputs.h"
+
+// entities
+#include "Starship.h"
+// systems
 #include "PhysicSystem.h"
 #include "DrawSystem.h"
 #include "ColliderSystem.h"
-#include "Starship.h"
+// game utility
+#include "IEntity.h"
+#include "GameClock.h"
+#include "Inputs.h"
+#include "ASCIIRenderer.h"
 #include "Constants.h"
+
 
 // class containing all objects and components to render
 GameWorld::GameWorld(ASCIIRenderer* renderer, GameClock* clock, Inputs* keyboard) {
@@ -70,4 +74,13 @@ IEntity* GameWorld::AddEntity(IEntity* entity)
 {
 	Entities.push_back(entity);
 	return entity;
+}
+
+void GameWorld::DeleteEntity(IEntity* entity) {
+	for (auto iter = Entities.begin(); iter != Entities.end(); ++iter) {
+		if (*iter == entity) {
+			delete entity;
+			Entities.erase(iter);
+		}
+	}
 }

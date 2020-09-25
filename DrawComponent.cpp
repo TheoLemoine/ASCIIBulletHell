@@ -1,15 +1,15 @@
 // header file
 #include "DrawComponent.h"
-// dependencies
+
 #include "PhysicComponent.h"
-// external dependencies
 #include <vector>
+
 
 DrawComponent::DrawComponent(
 	PhysicComponent* physic,
 	std::vector<std::vector<char>> charMaps,
 	std::vector<std::vector<int>> colorMaps,
-	int width, int height, float period
+	unsigned int width, unsigned int height, float period
 ) {
 	Physic = physic;
 

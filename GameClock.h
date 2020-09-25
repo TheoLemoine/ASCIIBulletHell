@@ -2,13 +2,12 @@
 #include <Windows.h>
 
 
-// class definition
 class GameClock {
 
 public:
-	static const int MULT_SEC = 1000000; // get time in seconds
-	static const int MULT_MILISEC = 1000; // get time in miliseconds
-	static const int MULT_MICROSEC = 1; // get time in microseconds
+	static constexpr int MULT_SEC = 1000000; // get time in seconds
+	static constexpr int MULT_MILISEC = 1000; // get time in miliseconds
+	static constexpr int MULT_MICROSEC = 1; // get time in microseconds
 
 	GameClock();
 

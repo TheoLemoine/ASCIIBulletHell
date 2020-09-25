@@ -2,7 +2,6 @@
 #include <Windows.h>
 
 
-// class definition
 class ASCIIRenderer
 {
 

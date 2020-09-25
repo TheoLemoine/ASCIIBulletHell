@@ -3,6 +3,7 @@
 
 struct PhysicComponent;
 
+
 struct DrawComponent
 {
 public:
@@ -10,7 +11,7 @@ public:
 		PhysicComponent* physic, 
 		std::vector<std::vector<char>> charMaps,
 		std::vector<std::vector<int>> colorMaps,
-		int width, int height, float period
+		unsigned int width, unsigned int height, float period
 	);
 
 	PhysicComponent* Physic;
@@ -20,7 +21,7 @@ public:
 	int Height;
 
 	// animation
-	int currentFrame;
+	unsigned int currentFrame;
 	float framePeriod;
 	float frameTime;
 

@@ -1,13 +1,11 @@
 #pragma once
 #include <vector>
 
-
-// forward definition
+class ASCIIRenderer;
 struct DrawComponent;
 struct PhysicComponent;
-class ASCIIRenderer;
 
-// class definition
+
 class DrawSystem
 {
 
@@ -21,7 +19,8 @@ public:
 		std::vector<std::vector<char>> charMaps,
 		std::vector<std::vector<int>> colorMaps,
 		int width, int height, float period
-	);
+	); 
+	void DeleteComponent(DrawComponent* componentPointer);
 	void UpdateComponents(float deltaTime);
 
 private:

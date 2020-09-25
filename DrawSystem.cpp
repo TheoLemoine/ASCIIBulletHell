@@ -1,9 +1,10 @@
 // header file
 #include "DrawSystem.h"
-// dependencies
+
 #include "DrawComponent.h"
 #include "PhysicComponent.h"
 #include "ASCIIRenderer.h"
+
 
 
 DrawSystem::DrawSystem(ASCIIRenderer* renderer) 
@@ -24,13 +25,24 @@ DrawComponent* DrawSystem::RequestComponent(
 	return newComponent;
 }
 
+void DrawSystem::DeleteComponent(DrawComponent* drawPointer)
+{
+	for (auto iter = Components.begin(); iter != Components.end(); ++iter)
+	{
+		if (*iter == drawPointer) {
+			delete drawPointer;
+			Components.erase(iter);
+		}
+	}
+}
+
 void DrawSystem::UpdateComponents(float deltaTime)
 {
 	for (DrawComponent* component : Components) {
 		
 		auto& charFrame = component->CharMaps[component->currentFrame];
 		auto& colorFrame = component->ColorMaps[component->currentFrame];
-		for (int i = 0; i < charFrame.size(); i++)
+		for (unsigned int i = 0; i < charFrame.size(); i++)
 		{
 			//TRANSPARANCY
 			if (charFrame[i] == ' ') continue;

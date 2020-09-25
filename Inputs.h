@@ -1,10 +1,8 @@
 #pragma once
 
-
-// forward declarations
 class ASCIIRenderer;
 
-// class definition
+
 class Inputs
 {
 private:

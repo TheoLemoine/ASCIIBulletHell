@@ -1,22 +1,25 @@
 #pragma once
 #include "IEntity.h"
+#include <stdio.h>
 
-//Forward declaration
 class GameWorld;
-class PhysicComponent;
-class DrawComponent;
-class ColliderComponent;
+struct ColliderComponent;
+struct DrawComponent;
+struct PhysicComponent;
 
-class Bullet :
-    public IEntity
+
+//[event_receiver(native)]
+class Bullet : public IEntity
 {
 public:
-	void Init(GameWorld* world, float startX, float startY, float velX, float velY);
+	void Init(GameWorld* world, double startX, double startY, double velX, double velY);
 	void Update(float deltaTime);
+	void HandleCollision(ColliderComponent* other);
 
 private:
 	PhysicComponent* m_physic;
 	DrawComponent* m_draw;
 	ColliderComponent* m_collider;
+	GameWorld* m_world;
 };
 

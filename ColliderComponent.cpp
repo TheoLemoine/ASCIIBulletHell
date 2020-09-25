@@ -1,10 +1,12 @@
-#include "IEntity.h"
-#include "PhysicComponent.h"
+// header file
 #include "ColliderComponent.h"
 
-ColliderComponent::ColliderComponent(IEntity* gameobject, PhysicComponent* physics, float size, Tag tag)
+#include "PhysicComponent.h"
+#include "Constants.h"
+
+
+ColliderComponent::ColliderComponent(PhysicComponent* physics, double size, Tag tag)
 {
-	Entity = gameobject;
 	Physic = physics;
 	Size = size;
 	ComponentTag = tag;

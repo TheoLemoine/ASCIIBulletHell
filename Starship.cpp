@@ -1,36 +1,33 @@
 ﻿// header file
 #include "Starship.h"
-// dependencies
-#include "IEntity.h"
-#include "ASCIIRenderer.h"
-#include "PhysicComponent.h"
-#include "PhysicSystem.h"
+// other entities
+#include "Bullet.h"
+// components and systems
 #include "ColliderSystem.h"
 #include "ColliderComponent.h"
 #include "DrawComponent.h"
 #include "DrawSystem.h"
-#include "ColliderComponent.h"
-#include "ColliderSystem.h"
-#include "Inputs.h"
+#include "PhysicComponent.h"
+#include "PhysicSystem.h"
+// game utility
 #include "GameWorld.h"
+#include "Inputs.h"
+#include "IEntity.h"
 #include "Constants.h"
-#include "Bullet.h"
+// external deps
+#include <Windows.h>
 
-//temp
-#include <iostream>
 
-constexpr int A_BLCK = 0x00; // all black
-constexpr int B_CYAN = 0x0B; // bright cyan
-constexpr int D_CYAN = 0x03; // dark cyan
-constexpr int B_PRPL = 0x0D; // bright purple
-constexpr int D_PRPL = 0x05; // dark purple
-
-void Starship::Init(GameWorld* world, float startX, float startY, float velX, float velY) {
+void Starship::Init(GameWorld* world, double startX, double startY, double velX, double velY) {
 	m_world = world;
-	m_physic = world->Physics->RequestComponent(startX, startY, 0, 0);
 
-	m_collider = world->Colliders->RequestComponent(this,m_physic,SS_SIZE,Tag::SPACESHIP);
-	m_draw = world->Drawer->RequestComponent(m_physic, 
+	m_physic = m_world->Physics->RequestComponent(startX, startY, 0, 0);
+
+	m_collider = m_world->Colliders->RequestComponent(m_physic, 2, Tag::SPACESHIP);
+	// bind collision event
+	__hook(&ColliderComponent::OnCollision, m_collider, &Starship::HandleCollision);
+
+	m_draw = m_world->Drawer->RequestComponent(m_physic,
 		// animation sprites
 		{ 
 			{
@@ -75,11 +72,7 @@ void Starship::Init(GameWorld* world, float startX, float startY, float velX, fl
 		},
 	5, 4, 2);
 
-	m_collider = world->Colliders->RequestComponent(this, m_physic, 2, Tag::SPACESHIP);
-	// bind collision event
-	__hook(&ColliderComponent::OnCollision, m_collider, &Starship::HandleCollision);
-
-	m_keyboard = world->Keyboard;
+	m_keyboard = m_world->Keyboard;
 }
 
 void Starship::Update(float deltaTime) {
@@ -121,7 +114,10 @@ void Starship::Shoot()
 	//TODO INVOKE BULLET
 	Bullet* bullet = new Bullet();
 	Vec2 bulletPos = m_physic->Position + SS_SHOOT_POS;
-	Vec2 bulletSpeed = Vec2(m_physic->Velocity.x/SS_BULLET_RATIO_SPEED,BULLET_SPEED+m_physic->Velocity.y/SS_BULLET_RATIO_SPEED);
+	Vec2 bulletSpeed = Vec2(
+		m_physic->Velocity.x / SS_BULLET_RATIO_SPEED,
+		m_physic->Velocity.y / SS_BULLET_RATIO_SPEED + BULLET_SPEED
+	);
 	bullet->Init(m_world, bulletPos.x, bulletPos.y, bulletSpeed.x, bulletSpeed.y);
 	m_world->AddEntity(bullet);
 
@@ -129,6 +125,7 @@ void Starship::Shoot()
 
 void Starship::HandleCollision(ColliderComponent* other) 
 {
+	m_world->DeleteEntity(this);
 	// check for tag, and handle dying
 }
 
@@ -143,9 +140,10 @@ Starship::Starship(float x, float y) {
 }
 
 Starship::~Starship() {
-	delete m_physic;
-	delete m_draw;
-	delete m_collider;
+	// ask systems to delete linked components
+	m_world->Physics->DeleteComponent(m_physic);
+	m_world->Drawer->DeleteComponent(m_draw);
+	m_world->Colliders->DeleteComponent(m_collider);
 
 	__unhook(&ColliderComponent::OnCollision, m_collider, &Starship::HandleCollision);
 }

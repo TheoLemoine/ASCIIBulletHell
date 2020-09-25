@@ -1,14 +1,17 @@
 #pragma once
-#include <vector>
 #include "Constants.h"
+#include <vector>
 
 struct ColliderComponent;
+struct PhysicComponent;
+
 
 class ColliderSystem
 {
 private:
 	std::vector<ColliderComponent*> Components;
 public:
-	ColliderComponent* RequestComponent(IEntity* gameobject, PhysicComponent* physics, float size, Tag tag);
+	ColliderComponent* RequestComponent(PhysicComponent* physics, double size, Tag tag);
+	void DeleteComponent(ColliderComponent* componentPointer);
 	void UpdateComponents(float deltaTime);
 };

@@ -1,17 +1,15 @@
 #pragma once
 #include <vector>
 
-
-// forward declarations
-class PhysicSystem; 
-class DrawSystem;
-class ColliderSystem;
 class ASCIIRenderer;
 class GameClock;
 class Inputs;
+class ColliderSystem;
+class DrawSystem;
+class PhysicSystem;
 class IEntity;
 
-// class definition
+
 class GameWorld {
 
 public:
@@ -29,4 +27,5 @@ public:
 	void InitWorld();
 	void StartGameLoop();
 	IEntity* AddEntity(IEntity *entity);
+	void DeleteEntity(IEntity* entity);
 };

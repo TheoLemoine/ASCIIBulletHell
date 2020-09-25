@@ -1,7 +1,6 @@
-#pragma once
 // header file
 #include "GameClock.h"
-// extenal depencencies
+
 #include <Windows.h>
 
 

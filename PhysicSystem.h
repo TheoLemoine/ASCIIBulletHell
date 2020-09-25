@@ -1,17 +1,16 @@
 #pragma once
 #include <vector>
 
+struct PhysicComponent;
 
-// forward declaration
-class PhysicComponent;
 
-// class definition
 class PhysicSystem
 {
 
 public:
 	std::vector<PhysicComponent*> Components;
 
-	PhysicComponent* RequestComponent(float posX, float posY, float velX, float velY);
+	PhysicComponent* RequestComponent(double posX, double posY, double velX, double velY);
+	void DeleteComponent(PhysicComponent* componentPointer);
 	void UpdateComponents(float deltaTime);
 };

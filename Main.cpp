@@ -1,10 +1,8 @@
-// dependencies
-#include "Constants.h"
 #include "GameWorld.h"
-#include "ASCIIRenderer.h"
 #include "GameClock.h"
 #include "Inputs.h"
-#include "Starship.h"
+#include "ASCIIRenderer.h"
+#include "Constants.h"
 
 int main() {
 

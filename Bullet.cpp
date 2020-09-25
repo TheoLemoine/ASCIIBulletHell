@@ -1,24 +1,32 @@
-#include "GameWorld.h"
-#include "PhysicSystem.h"
-#include "ColliderSystem.h"
-#include "DrawSystem.h"
-#include "PhysicComponent.h"
-#include "ColliderComponent.h"
-#include "DrawComponent.h"
-#include "DrawSystem.h"
-#include <Windows.h>
-
+// header file
 #include "Bullet.h"
 
-constexpr int A_BLCK = 0x00;
-constexpr int D_BLUE = FOREGROUND_BLUE;
-constexpr int B_BLUE = FOREGROUND_BLUE | FOREGROUND_INTENSITY;
+// components and systems
+#include "ColliderSystem.h"
+#include "ColliderComponent.h"
+#include "DrawSystem.h"
+#include "DrawComponent.h"
+#include "PhysicSystem.h"
+#include "PhysicComponent.h"
+// game utility
+#include "GameWorld.h"
+#include "IEntity.h"
+#include "Constants.h"
+// external deps
+#include <Windows.h>
 
-void Bullet::Init(GameWorld* world, float startX, float startY, float velX, float velY)
+
+
+void Bullet::Init(GameWorld* world, double startX, double startY, double velX, double velY)
 {
-	m_physic = world->Physics->RequestComponent(startX, startY, velX, velY);
-	m_collider = world->Colliders->RequestComponent(this, m_physic, 1, Tag::PROJECTILE);
-	m_draw = world->Drawer->RequestComponent(m_physic,
+	m_world = world;
+
+	m_physic = m_world->Physics->RequestComponent(startX, startY, velX, velY);
+
+	m_collider = m_world->Colliders->RequestComponent(m_physic, 1, Tag::PROJECTILE);
+	__hook(&ColliderComponent::OnCollision, m_collider, Bullet::HandleCollision);
+
+	m_draw = m_world->Drawer->RequestComponent(m_physic,
 		// sprites
 		{
 			{
@@ -45,7 +53,12 @@ void Bullet::Init(GameWorld* world, float startX, float startY, float velX, floa
 				A_BLCK, D_BLUE, A_BLCK,
 			},
 		},
-	3, 3, 1.5);
+	3, 3, 4);
+}
+
+void Bullet::HandleCollision(ColliderComponent* other)
+{
+	m_world->DeleteEntity(this);
 }
 
 void Bullet::Update(float deltaTime)

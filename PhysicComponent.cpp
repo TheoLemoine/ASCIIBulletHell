@@ -1,10 +1,10 @@
 // header file
 #include "PhysicComponent.h"
-// dependencies
+
 #include "Vec2.h"
 
 
-PhysicComponent::PhysicComponent(float posX, float posY, float velX, float velY)
+PhysicComponent::PhysicComponent(double posX, double posY, double velX, double velY)
 {
 	Position = Vec2(posX, posY);
 	Velocity = Vec2(velX, velY);
@@ -12,7 +12,7 @@ PhysicComponent::PhysicComponent(float posX, float posY, float velX, float velY)
 }
 
 
-float PhysicComponent::Dist(PhysicComponent* physic)
+double PhysicComponent::Dist(PhysicComponent* physic)
 {
 	return Position.Dist(physic->Position);
 }

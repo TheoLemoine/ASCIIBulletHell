@@ -1,8 +1,7 @@
 // header file
 #include "ASCIIRenderer.h"
-// dependencies
+
 #include "Constants.h"
-// external dependencies
 #include <Windows.h>
 
 
