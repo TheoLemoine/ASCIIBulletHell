@@ -56,6 +56,8 @@ void GameWorld::StartGameLoop() {
 		deltaTime = Clock->GetElapsedTimeSinceLastCall();
 		Renderer->Clear();
 
+		SpawnEnnemy(deltaTime);
+
 		Physics->UpdateComponents(deltaTime);
 		Colliders->UpdateComponents(deltaTime);
 		Drawer->UpdateComponents(deltaTime);
@@ -74,6 +76,18 @@ IEntity* GameWorld::AddEntity(IEntity* entity)
 {
 	Entities.push_back(entity);
 	return entity;
+}
+
+void GameWorld::SpawnEnnemy(float deltaTime)
+{
+	SpawnEnnemyCooldown -= deltaTime;
+	if (SpawnEnnemyCooldown <= 0)
+	{
+		SpawnEnnemyCooldown = SPAWN_COOLDOWN;
+		Ennemy* ennemy = new Ennemy();
+		ennemy->Init(this,GAME_WIDTH/2,0,0,1);
+		AddEntity(ennemy);
+	}
 }
 
 void GameWorld::DeleteEntity(IEntity* entity) {
