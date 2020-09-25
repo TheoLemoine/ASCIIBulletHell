@@ -1,17 +1,23 @@
-#include "PhysicSystem.h"
-#include "ColliderSystem.h"
-#include "DrawSystem.h"
-#include "PhysicComponent.h"
-#include "ColliderComponent.h"
-#include "DrawComponent.h"
-#include "GameWorld.h"
-#include "Constants.h"
+// header file
 #include "Ennemy.h"
 
-void Ennemy::Init(GameWorld* world, float startX, float startY, float velX, float velY)
+// components and systems
+#include "PhysicSystem.h"
+#include "PhysicComponent.h"
+#include "ColliderSystem.h"
+#include "ColliderComponent.h"
+#include "DrawSystem.h"
+#include "DrawComponent.h"
+
+// game utility
+#include "GameWorld.h"
+#include "Constants.h"
+
+
+void Ennemy::Init(GameWorld* world, double startX, double startY, double velX, double velY)
 {
 	m_physic = world->Physics->RequestComponent(startX, startY, velX, velY);
-	m_collider = world->Colliders->RequestComponent(this, m_physic, 1, Tag::PROJECTILE);
+	m_collider = world->Colliders->RequestComponent(m_physic, 1, Tag::PROJECTILE);
 	m_draw = world->Drawer->RequestComponent(m_physic,
 		// sprites
 		{

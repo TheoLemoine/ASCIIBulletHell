@@ -10,15 +10,15 @@ const double MAX_VELOCITY = 20;
 const double ACCELERATION_POWER = 10;
 
 //SPACESHIP
-const float SS_ACCELERATION_POWER = 7.5;
-const float SS_SIZE = 2;
+const double SS_ACCELERATION_POWER = 7.5;
+const double SS_SIZE = 2;
 const Vec2  SS_SHOOT_POS = Vec2(0, -2);
-const float SS_COOLDOWN = 2;
-const float SS_IMMOBILITY = 0.01;
-const float SS_BULLET_RATIO_SPEED = 2;
+const double SS_COOLDOWN = 2;
+const double SS_IMMOBILITY = 0.01;
+const double SS_BULLET_RATIO_SPEED = 2;
 
 //BULLET
-const float BULLET_SPEED = -2.5;
+const double BULLET_SPEED = -2.5;
 
 //COLLIDER
 enum class Tag : unsigned int { 
@@ -32,7 +32,6 @@ const bool COLLISION_MATRIX[3][3] = {
 	{ false, true,  true,  },
 	{ true,  false, true,  },
 	{ true,  true,  false, },
-};
 };
 
 constexpr int A_BLCK = 0x00; // all		black

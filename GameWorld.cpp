@@ -3,6 +3,7 @@
 
 // entities
 #include "Starship.h"
+#include "Ennemy.h"
 // systems
 #include "PhysicSystem.h"
 #include "DrawSystem.h"

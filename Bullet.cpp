@@ -16,7 +16,6 @@
 #include <Windows.h>
 
 
-
 void Bullet::Init(GameWorld* world, double startX, double startY, double velX, double velY)
 {
 	m_world = world;
