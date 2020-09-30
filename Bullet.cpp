@@ -23,7 +23,7 @@ void Bullet::Init(GameWorld* world, double startX, double startY, double velX, d
 
 	m_physic = m_world->Physics->RequestComponent(startX, startY, velX, velY);
 
-	m_collider = m_world->Colliders->RequestComponent(m_physic, 1, Tag::PROJECTILE);
+	m_collider = m_world->Colliders->RequestComponent(m_physic, 1, Tag::SPACESHIP);
 	// bind collision event
 	m_collider->AddCollisionListener(std::bind(&Bullet::HandleCollision, this, std::placeholders::_1));
 
@@ -64,6 +64,11 @@ void Bullet::HandleCollision(ColliderComponent* other)
 
 void Bullet::Update(float deltaTime)
 {
+	m_timeAlive += deltaTime;
+
+	if (m_timeAlive > TIME_BEFORE_TAG_SWAP) {
+		m_collider->ComponentTag = Tag::PROJECTILE;
+	}
 }
 
 void Bullet::Delete() {
@@ -79,6 +84,8 @@ Bullet::Bullet() {
 	m_physic = nullptr;
 	m_collider = nullptr;
 	m_draw = nullptr;
+
+	m_timeAlive = 0.f;
 }
 
 Bullet::~Bullet() { }

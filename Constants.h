@@ -19,6 +19,7 @@ const double SS_BULLET_RATIO_SPEED = 2;
 
 //BULLET
 const double BULLET_SPEED = -2.5;
+const float TIME_BEFORE_TAG_SWAP = 1.f;
 
 //COLLIDER
 enum class 
@@ -42,7 +43,7 @@ constexpr int B_PRPL = 0x0D; // bright	purple
 constexpr int D_PRPL = 0x05; // dark	purple
 constexpr int D_BLUE = 0x01; // dark	blue
 constexpr int B_BLUE = 0x09; // bright	blue
-constexpr int B_RED  = 0x03; // bright	red
+constexpr int B_RED  = 0x0C; // bright	red
 
 //ENEMYS
 const float SPAWN_COOLDOWN = 10;

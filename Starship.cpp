@@ -121,12 +121,13 @@ void Starship::Delete() {
 void Starship::Shoot()
 {
 	//TODO INVOKE BULLET
-	Bullet* bullet = new Bullet();
 	Vec2 bulletPos = m_physic->Position + SS_SHOOT_POS;
 	Vec2 bulletSpeed = Vec2(
 		m_physic->Velocity.x / SS_BULLET_RATIO_SPEED,
 		m_physic->Velocity.y / SS_BULLET_RATIO_SPEED + BULLET_SPEED
 	);
+
+	Bullet* bullet = new Bullet();
 	bullet->Init(m_world, bulletPos.x, bulletPos.y, bulletSpeed.x, bulletSpeed.y);
 	m_world->AddEntity(bullet);
 
@@ -135,7 +136,7 @@ void Starship::Shoot()
 void Starship::HandleCollision(ColliderComponent* other) 
 {
 	m_world->AddToTrashcan(this);
-	// check for tag, and handle dying
+	// and handle dying
 }
 
 Starship::Starship() {

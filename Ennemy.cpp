@@ -20,7 +20,7 @@ void Ennemy::Init(GameWorld* world, double startX, double startY, double velX, d
 
 	m_physic = m_world->Physics->RequestComponent(startX, startY, velX, velY);
 
-	m_collider = m_world->Colliders->RequestComponent(m_physic, 1, Tag::PROJECTILE);
+	m_collider = m_world->Colliders->RequestComponent(m_physic, 1, Tag::ENNEMY);
 	// bind collision event
 	m_collider->AddCollisionListener(std::bind(&Ennemy::HandleCollision, this, std::placeholders::_1));
 
