@@ -31,4 +31,5 @@ private:
 	Inputs* m_keyboard;
 
 	float m_lastShoot;
+	float m_hp;
 };

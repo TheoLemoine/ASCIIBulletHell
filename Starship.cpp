@@ -136,15 +136,31 @@ void Starship::Shoot()
 
 void Starship::HandleCollision(ColliderComponent* other) 
 {
-	m_world->AddToTrashcan(this);
-	// and handle dying
-	Particles* particleSystemOut = new Particles({ '.', '*', '0', 'o' }, B_CYAN, 30, 2, 15.f, m_physic->Velocity);
-	particleSystemOut->Init(m_world, m_physic->Position.x, m_physic->Position.y, 0, 0);
-	m_world->AddEntity(particleSystemOut);
 
-	Particles* particleSystemCenter = new Particles({ '#', '@', '&' }, B_PRPL, 10, 0.5, 30.f, m_physic->Velocity);
-	particleSystemCenter->Init(m_world, m_physic->Position.x, m_physic->Position.y, 0, 0);
-	m_world->AddEntity(particleSystemCenter);
+	m_hp--;
+
+	if (m_hp <= 0) 
+	{
+
+		m_world->AddToTrashcan(this);
+
+		// and handle dying
+		Particles* particleSystemOut = new Particles({ '.', '*', '0', 'o' }, B_CYAN, 30, 2, 15.f, m_physic->Velocity);
+		particleSystemOut->Init(m_world, m_physic->Position.x, m_physic->Position.y, 0, 0);
+		m_world->AddEntity(particleSystemOut);
+
+		Particles* particleSystemCenter = new Particles({ '#', '@', '&' }, B_PRPL, 10, 0.5, 30.f, m_physic->Velocity);
+		particleSystemCenter->Init(m_world, m_physic->Position.x, m_physic->Position.y, 0, 0);
+		m_world->AddEntity(particleSystemCenter);
+	}
+	else
+	{
+		// and handle dying
+		Particles* particleSystemOut = new Particles({ '@', '#', '*', '0', 'o' }, B_CYAN, 5, 1.2, 5.f, m_physic->Velocity);
+		particleSystemOut->Init(m_world, m_physic->Position.x, m_physic->Position.y, 0, 0);
+		m_world->AddEntity(particleSystemOut);
+	}
+	
 }
 
 Starship::Starship() {
@@ -156,6 +172,7 @@ Starship::Starship() {
 	m_draw = nullptr;
 
 	m_lastShoot = 0.f;
+	m_hp = 3;
 }
 
 Starship::~Starship() { }
