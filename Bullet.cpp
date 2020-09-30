@@ -10,10 +10,11 @@
 #include "PhysicComponent.h"
 // game utility
 #include "GameWorld.h"
-#include "IEntity.h"
+#include "Entity.h"
 #include "Constants.h"
 // external deps
 #include <Windows.h>
+#include <functional>
 
 
 void Bullet::Init(GameWorld* world, double startX, double startY, double velX, double velY)
@@ -23,7 +24,8 @@ void Bullet::Init(GameWorld* world, double startX, double startY, double velX, d
 	m_physic = m_world->Physics->RequestComponent(startX, startY, velX, velY);
 
 	m_collider = m_world->Colliders->RequestComponent(m_physic, 1, Tag::PROJECTILE);
-	__hook(&ColliderComponent::OnCollision, m_collider, Bullet::HandleCollision);
+	// bind collision event
+	m_collider->AddCollisionListener(std::bind(&Bullet::HandleCollision, this, std::placeholders::_1));
 
 	m_draw = m_world->Drawer->RequestComponent(m_physic,
 		// sprites
@@ -57,9 +59,26 @@ void Bullet::Init(GameWorld* world, double startX, double startY, double velX, d
 
 void Bullet::HandleCollision(ColliderComponent* other)
 {
-	m_world->DeleteEntity(this);
+	m_world->AddToTrashcan(this);
 }
 
 void Bullet::Update(float deltaTime)
 {
 }
+
+void Bullet::Delete() {
+	// ask systems to delete linked components
+	m_world->Physics->DeleteComponent(m_physic);
+	m_world->Drawer->DeleteComponent(m_draw);
+	m_world->Colliders->DeleteComponent(m_collider);
+}
+
+Bullet::Bullet() {
+	// set on Init()
+	m_world = nullptr;
+	m_physic = nullptr;
+	m_collider = nullptr;
+	m_draw = nullptr;
+}
+
+Bullet::~Bullet() { }

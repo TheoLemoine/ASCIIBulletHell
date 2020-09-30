@@ -17,13 +17,16 @@ PhysicComponent* PhysicSystem::RequestComponent(double posX, double posY, double
 
 void PhysicSystem::DeleteComponent(PhysicComponent* physicPointer)
 {
-	for (auto iter = Components.begin(); iter != Components.end(); ++iter)
+	auto end_itr = Components.end();
+	for (auto itr = Components.begin(); itr != end_itr; ++itr)
 	{
-		if (*iter == physicPointer) {
-			delete physicPointer;
-			Components.erase(iter);
+		if (*itr == physicPointer) {
+			Components.erase(itr);
+			break;
 		}
 	}
+
+	delete physicPointer;
 }
 
 void PhysicSystem::UpdateComponents(float deltaTime)

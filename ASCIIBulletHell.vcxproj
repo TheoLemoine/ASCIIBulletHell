@@ -165,7 +165,7 @@
     <ClInclude Include="DrawComponent.h" />
     <ClInclude Include="DrawSystem.h" />
     <ClInclude Include="Ennemy.h" />
-    <ClInclude Include="IEntity.h" />
+    <ClInclude Include="Entity.h" />
     <ClInclude Include="Inputs.h" />
     <ClInclude Include="PhysicComponent.h" />
     <ClInclude Include="PhysicSystem.h" />

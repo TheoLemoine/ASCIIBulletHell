@@ -1,4 +1,4 @@
 // header file
-#include "IEntity.h"
+#include "Entity.h"
 
 // no implementation needed

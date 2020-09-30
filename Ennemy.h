@@ -1,5 +1,5 @@
 #pragma once
-#include "IEntity.h"
+#include "Entity.h"
 
 class GameWorld;
 struct PhysicComponent;
@@ -7,14 +7,23 @@ struct ColliderComponent;
 struct DrawComponent;
 
 
-class Ennemy :
-    public IEntity
+class Ennemy : public Entity
 {
 public :
-    virtual void Init(GameWorld* world, double startX, double startY, double velX, double velY) override;
+    // lifecycle
+    void Init(GameWorld* world, double startX, double startY, double velX, double velY) override;
+    void Update(float deltaTime) override;
+    void Delete() override;
 
-    virtual void Update(float deltaTime) override;
+    // other methods
+    void HandleCollision(ColliderComponent* other);
 
+    // constructor and destructor
+    Ennemy();
+    ~Ennemy();
+
+private:
+    GameWorld* m_world;
     PhysicComponent* m_physic;
     ColliderComponent* m_collider;
     DrawComponent* m_draw;

@@ -21,7 +21,8 @@ const double SS_BULLET_RATIO_SPEED = 2;
 const double BULLET_SPEED = -2.5;
 
 //COLLIDER
-enum class Tag : unsigned int { 
+enum class 
+	Tag : unsigned int { 
 	SPACESHIP = 0, 
 	PROJECTILE = 1, 
 	ENNEMY  = 2

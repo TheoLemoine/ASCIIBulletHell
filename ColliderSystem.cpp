@@ -16,13 +16,16 @@ ColliderComponent* ColliderSystem::RequestComponent(PhysicComponent* physics, do
 
 void ColliderSystem::DeleteComponent(ColliderComponent* colliderPointer) 
 {
-	for (auto iter = Components.begin(); iter != Components.end(); ++iter) 
+	auto end_itr = Components.end();
+	for (auto itr = Components.begin(); itr != end_itr; ++itr)
 	{
-		if (*iter == colliderPointer) {
-			delete colliderPointer;
-			Components.erase(iter);
+		if (*itr == colliderPointer) {
+			itr = Components.erase(itr);
+			break;
 		}
 	}
+
+	delete colliderPointer;
 }
 
 void ColliderSystem::UpdateComponents(float deltaTime)
@@ -43,8 +46,8 @@ void ColliderSystem::UpdateComponents(float deltaTime)
 			if (!COLLISION_MATRIX[(int)first->ComponentTag][(int)second->ComponentTag]) continue;
 
 			if (first->Physic->Dist(second->Physic) <= (first->Size) + (second->Size)) {
-				__raise first->OnCollision(second);
-				__raise second->OnCollision(first);
+				first->TriggerCollision(second);
+				second->TriggerCollision(first);
 			}
 		}
 	}

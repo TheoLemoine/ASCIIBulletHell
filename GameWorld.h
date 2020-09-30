@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <stack>
 
 class ASCIIRenderer;
 class GameClock;
@@ -7,7 +8,7 @@ class Inputs;
 class ColliderSystem;
 class DrawSystem;
 class PhysicSystem;
-class IEntity;
+class Entity;
 
 
 class GameWorld {
@@ -22,13 +23,20 @@ public:
 	ASCIIRenderer* Renderer;
 	GameClock* Clock;
 	Inputs* Keyboard;
-	std::vector<IEntity*> Entities;
+	std::vector<Entity*> Entities;
 
 	float SpawnEnnemyCooldown;
 
 	void InitWorld();
 	void StartGameLoop();
-	IEntity* AddEntity(IEntity *entity);
+	Entity* AddEntity(Entity* entity);
 	void SpawnEnnemy(float deltaTime);
-	void DeleteEntity(IEntity* entity);
+	void AddToTrashcan(Entity* entity);
+
+private:
+	// vector of index of Enities to delete at the end of the frame
+	// deleting entities immediatly might cause disfunction in the currents systems loops
+	std::stack<Entity*> m_trashcan;
+
+	void EmptyTrashcan();
 };

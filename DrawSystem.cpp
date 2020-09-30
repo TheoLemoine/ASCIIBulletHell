@@ -27,13 +27,16 @@ DrawComponent* DrawSystem::RequestComponent(
 
 void DrawSystem::DeleteComponent(DrawComponent* drawPointer)
 {
-	for (auto iter = Components.begin(); iter != Components.end(); ++iter)
+	auto end_itr = Components.end();
+	for (auto itr = Components.begin(); itr != end_itr; ++itr)
 	{
-		if (*iter == drawPointer) {
-			delete drawPointer;
-			Components.erase(iter);
+		if (*itr == drawPointer) {
+			Components.erase(itr);
+			break;
 		}
 	}
+
+	delete drawPointer;
 }
 
 void DrawSystem::UpdateComponents(float deltaTime)

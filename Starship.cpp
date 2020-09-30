@@ -12,10 +12,11 @@
 // game utility
 #include "GameWorld.h"
 #include "Inputs.h"
-#include "IEntity.h"
+#include "Entity.h"
 #include "Constants.h"
 // external deps
 #include <Windows.h>
+#include <functional>
 
 
 void Starship::Init(GameWorld* world, double startX, double startY, double velX, double velY) {
@@ -25,7 +26,7 @@ void Starship::Init(GameWorld* world, double startX, double startY, double velX,
 
 	m_collider = m_world->Colliders->RequestComponent(m_physic, 2, Tag::SPACESHIP);
 	// bind collision event
-	__hook(&ColliderComponent::OnCollision, m_collider, &Starship::HandleCollision);
+	m_collider->AddCollisionListener(std::bind(&Starship::HandleCollision, this, std::placeholders::_1));
 
 	m_draw = m_world->Drawer->RequestComponent(m_physic,
 		// animation sprites
@@ -109,6 +110,14 @@ void Starship::Update(float deltaTime) {
 	}
 }
 
+void Starship::Delete() {
+
+	// ask systems to delete linked components
+	m_world->Physics->DeleteComponent(m_physic);
+	m_world->Drawer->DeleteComponent(m_draw);
+	m_world->Colliders->DeleteComponent(m_collider);
+}
+
 void Starship::Shoot()
 {
 	//TODO INVOKE BULLET
@@ -125,25 +134,19 @@ void Starship::Shoot()
 
 void Starship::HandleCollision(ColliderComponent* other) 
 {
-	m_world->DeleteEntity(this);
+	m_world->AddToTrashcan(this);
 	// check for tag, and handle dying
 }
 
-Starship::Starship(float x, float y) {
-	startX = x;
-	startY = y;
-
+Starship::Starship() {
 	// set on Init()
+	m_world = nullptr;
 	m_physic = nullptr;
+	m_collider = nullptr;
 	m_keyboard = nullptr;
 	m_draw = nullptr;
+
+	m_lastShoot = 0.f;
 }
 
-Starship::~Starship() {
-	// ask systems to delete linked components
-	m_world->Physics->DeleteComponent(m_physic);
-	m_world->Drawer->DeleteComponent(m_draw);
-	m_world->Colliders->DeleteComponent(m_collider);
-
-	__unhook(&ColliderComponent::OnCollision, m_collider, &Starship::HandleCollision);
-}
+Starship::~Starship() { }

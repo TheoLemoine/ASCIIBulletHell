@@ -1,6 +1,5 @@
 #pragma once
-#include "IEntity.h"
-#include <stdio.h>
+#include "Entity.h"
 
 class GameWorld;
 struct ColliderComponent;
@@ -8,13 +7,20 @@ struct DrawComponent;
 struct PhysicComponent;
 
 
-//[event_receiver(native)]
-class Bullet : public IEntity
+class Bullet : public Entity
 {
 public:
+	// lifecycle
 	void Init(GameWorld* world, double startX, double startY, double velX, double velY);
 	void Update(float deltaTime);
+	void Delete();
+
+	// other methods
 	void HandleCollision(ColliderComponent* other);
+
+	// constructor and destructor
+	Bullet();
+	~Bullet();
 
 private:
 	PhysicComponent* m_physic;
