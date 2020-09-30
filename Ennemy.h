@@ -2,6 +2,7 @@
 #include "Entity.h"
 
 class GameWorld;
+class Score;
 struct PhysicComponent;
 struct ColliderComponent;
 struct DrawComponent;
@@ -26,5 +27,6 @@ private:
     PhysicComponent* m_physic;
     ColliderComponent* m_collider;
     DrawComponent* m_draw;
+    Score* m_score;
 };
 

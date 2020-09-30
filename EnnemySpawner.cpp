@@ -18,7 +18,7 @@ void EnnemySpawner::Update(float deltaTime)
 		m_currentSpawnCoolDown = m_spawnCoolDown;
 	
 		Ennemy* ennemy = new Ennemy();
-		ennemy->Init(m_world, rand() % GAME_WIDTH, rand() % 4, (rand() % 30) / 10 - 1.5, (rand() % 30) / 10);
+		ennemy->Init(m_world, rand() % GAME_WIDTH, rand() % 4, randFloat(-2.f, 2.f), randFloat(-0.5f, 2.f));
 		m_world->AddEntity(ennemy);
 	}
 	else 

@@ -1,12 +1,11 @@
 #include "GameWorld.h"
 #include "GameClock.h"
 #include "Inputs.h"
+#include "Score.h"
 #include "ASCIIRenderer.h"
 #include "Constants.h"
 
 int main() {
-
-	// Have Components for ID, rendering, Physics, Collisions, ...
 	
 	// game time
 	GameClock clock;
@@ -18,11 +17,13 @@ int main() {
 	// inputs
 	Inputs keyboard;
 
+	// scoring
+	Score scoreBoard(&renderer);
+
 	// create and start game
-	GameWorld world(&renderer, &clock, &keyboard);
+	GameWorld world(&renderer, &clock, &keyboard, &scoreBoard);
 	world.InitWorld();
 	world.StartGameLoop();
 
 	return 0;
-
 }

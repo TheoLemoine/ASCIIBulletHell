@@ -47,14 +47,14 @@ void Bullet::Init(GameWorld* world, double startX, double startY, double velX, d
 		// colors
 		{
 			{
-				A_BLCK, B_BLUE, A_BLCK,
-				B_BLUE, B_BLUE, B_BLUE,
+				A_BLCK, B_YLOW, A_BLCK,
+				B_BLUE, B_YLOW, B_BLUE,
 				A_BLCK, B_BLUE, A_BLCK,
 			},
 			{
+				A_BLCK, B_YLOW, A_BLCK,
+				D_BLUE, D_YLOW, D_BLUE,
 				A_BLCK, B_BLUE, A_BLCK,
-				D_BLUE, B_BLUE, D_BLUE,
-				A_BLCK, D_BLUE, A_BLCK,
 			},
 		},
 	3, 3, 4);

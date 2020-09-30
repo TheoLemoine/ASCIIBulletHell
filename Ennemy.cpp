@@ -13,6 +13,7 @@
 #include "DrawComponent.h"
 
 // game utility
+#include "Score.h"
 #include "GameWorld.h"
 #include "Constants.h"
 
@@ -20,6 +21,8 @@
 void Ennemy::Init(GameWorld* world, double startX, double startY, double velX, double velY)
 {
 	m_world = world;
+
+	m_score = world->ScoreBoard;
 
 	m_physic = m_world->Physics->RequestComponent(startX, startY, velX, velY);
 
@@ -52,22 +55,22 @@ void Ennemy::Init(GameWorld* world, double startX, double startY, double velX, d
 		// colors
 		{
 			{
-				B_RED, B_RED, B_RED, B_RED,
-				B_RED, B_RED, B_RED, B_RED,
-				B_RED, B_RED, B_RED, B_RED,
-				B_RED, B_RED, B_RED, B_RED
+				B__RED, B__RED, B__RED, B__RED,
+				B__RED, B_CYAN, B_CYAN, B__RED,
+				B__RED, B__RED, B__RED, B__RED,
+				B__RED, B_PRPL, B_PRPL, B__RED
 			},
 			{
-				B_RED, B_RED, B_RED, B_RED,
-				B_RED, B_RED, B_RED, B_RED,
-				B_RED, B_RED, B_RED, B_RED,
-				B_RED, B_RED, B_RED, B_RED
+				B__RED, B__RED, B__RED, B__RED,
+				B__RED, B_CYAN, B_CYAN, B__RED,
+				B__RED, B__RED, B__RED, B__RED,
+				B__RED, D_PRPL, D_PRPL, B__RED
 			},
 			{
-				B_RED, B_RED, B_RED, B_RED,
-				B_RED, B_RED, B_RED, B_RED,
-				B_RED, B_RED, B_RED, B_RED,
-				B_RED, B_RED, B_RED, B_RED
+				B__RED, B__RED, B__RED, B__RED,
+				B__RED, B_CYAN, B_CYAN, B__RED,
+				B__RED, B__RED, B__RED, B__RED,
+				B__RED, B_PRPL, B_PRPL, B__RED
 			}
 		},
 		4, 4, 1.5);
@@ -77,9 +80,11 @@ void Ennemy::HandleCollision(ColliderComponent* other)
 {
 	m_world->AddToTrashcan(this);
 
-	Particles* particleSystem = new Particles({ '-', '/', '\\', '|' }, B_RED, 10, 1, 10.f, m_physic->Velocity * 0.5);
+	Particles* particleSystem = new Particles({ '-', '/', '\\', '|' }, B__RED, 10, 1, 10.f, m_physic->Velocity * 0.5);
 	particleSystem->Init(m_world, m_physic->Position.x, m_physic->Position.y, 0, 0);
 	m_world->AddEntity(particleSystem);
+
+	m_score->AddToScore(ENMY_SCORE_VALUE);
 }
 
 void Ennemy::Update(float deltaTime) { }

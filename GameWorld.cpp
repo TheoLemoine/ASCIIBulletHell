@@ -12,15 +12,17 @@
 #include "Entity.h"
 #include "GameClock.h"
 #include "Inputs.h"
+#include "Score.h"
 #include "ASCIIRenderer.h"
 #include "Constants.h"
 
 
 // class containing all objects and components to render
-GameWorld::GameWorld(ASCIIRenderer* renderer, GameClock* clock, Inputs* keyboard) {
+GameWorld::GameWorld(ASCIIRenderer* renderer, GameClock* clock, Inputs* keyboard, Score* scoreBoard) {
 	Renderer = renderer;
 	Clock = clock;
 	Keyboard = keyboard;
+	ScoreBoard = scoreBoard;
 	Physics = new PhysicSystem();
 	Drawer = new DrawSystem(Renderer);
 	Colliders = new ColliderSystem();
@@ -46,7 +48,7 @@ void GameWorld::InitWorld()
 	AddEntity(player);
 	player->Init(this, GAME_WIDTH / 2, GAME_HEIGHT / 2, 0, 0);
 
-	EnnemySpawner* spawner = new EnnemySpawner(SPAWN_COOLDOWN);
+	EnnemySpawner* spawner = new EnnemySpawner(ENMY_SPAWN_COOLDOWN);
 	AddEntity(spawner);
 	spawner->Init(this, 0, 0, 0, 0);
 }
@@ -73,7 +75,8 @@ void GameWorld::StartGameLoop() {
 		}
 
 		// render
-		Renderer->Render();
+		ScoreBoard->DrawScore();
+		Renderer->Render(deltaTime);
 
 		// clear all entities that were scheduled to be deleted
 		EmptyTrashcan();

@@ -2,6 +2,7 @@
 #include "ASCIIRenderer.h"
 
 #include "Constants.h"
+#include <string>
 #include <Windows.h>
 
 
@@ -68,7 +69,20 @@ void ASCIIRenderer::Clear() {
 	}
 }
 
-void ASCIIRenderer::Render() {
+void ASCIIRenderer::Render(float deltaTime) {
+
+	if (SHOW_FPS) {
+		int fps = 1 / deltaTime;
+
+		std::string stringFps = std::to_string(fps) + "FPS";
+
+		std::string::size_type length = stringFps.size();
+		for (std::string::size_type i = 0; i < length; ++i)
+		{
+			SetAt(GAME_WIDTH - (length - i), GAME_HEIGHT - 1, stringFps[i], B_CYAN);
+		}
+	}
+
 	WriteConsoleOutput(m_hOutput, m_buffer, m_dwBufferSize, m_dwBufferCoord, &m_rcRegion);
 }
 

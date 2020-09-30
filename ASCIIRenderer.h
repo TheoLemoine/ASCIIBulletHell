@@ -11,7 +11,7 @@ public:
 
 	~ASCIIRenderer();
 
-	void Render();
+	void Render(float deltaTime);
 	void Clear();
 
 	CHAR_INFO* GetAt(int x, int y);

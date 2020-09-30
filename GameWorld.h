@@ -5,6 +5,7 @@
 class ASCIIRenderer;
 class GameClock;
 class Inputs;
+class Score;
 class ColliderSystem;
 class DrawSystem;
 class PhysicSystem;
@@ -14,7 +15,7 @@ class Entity;
 class GameWorld {
 
 public:
-	GameWorld(ASCIIRenderer* renderer, GameClock* clock, Inputs* keyboard);
+	GameWorld(ASCIIRenderer* renderer, GameClock* clock, Inputs* keyboard, Score* scoreBoard);
 	~GameWorld();
 
 	PhysicSystem* Physics;
@@ -23,6 +24,7 @@ public:
 	ASCIIRenderer* Renderer;
 	GameClock* Clock;
 	Inputs* Keyboard;
+	Score* ScoreBoard;
 	std::vector<Entity*> Entities;
 
 	void InitWorld();
