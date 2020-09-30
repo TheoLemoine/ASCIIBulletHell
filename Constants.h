@@ -13,6 +13,7 @@ const double MAX_VELOCITY = 20;
 const double ACCELERATION_POWER = 10;
 
 //SPACESHIP
+const int SS_HP = 3;
 const double SS_ACCELERATION_POWER = 7.5;
 const double SS_SIZE = 2;
 const Vec2  SS_SHOOT_POS = Vec2(0, -2);

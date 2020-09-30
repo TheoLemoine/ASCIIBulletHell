@@ -172,7 +172,7 @@ Starship::Starship() {
 	m_draw = nullptr;
 
 	m_lastShoot = 0.f;
-	m_hp = 3;
+	m_hp = SS_HP;
 }
 
 Starship::~Starship() { }
