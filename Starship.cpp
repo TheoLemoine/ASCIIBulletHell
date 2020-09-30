@@ -2,6 +2,7 @@
 #include "Starship.h"
 // other entities
 #include "Bullet.h"
+#include "Particles.h"
 // components and systems
 #include "ColliderSystem.h"
 #include "ColliderComponent.h"
@@ -124,7 +125,7 @@ void Starship::Shoot()
 	Vec2 bulletPos = m_physic->Position + SS_SHOOT_POS;
 	Vec2 bulletSpeed = Vec2(
 		m_physic->Velocity.x / SS_BULLET_RATIO_SPEED,
-		m_physic->Velocity.y / SS_BULLET_RATIO_SPEED + BULLET_SPEED
+		m_physic->Velocity.y / SS_BULLET_RATIO_SPEED + BLT_SPEED
 	);
 
 	Bullet* bullet = new Bullet();
@@ -137,6 +138,13 @@ void Starship::HandleCollision(ColliderComponent* other)
 {
 	m_world->AddToTrashcan(this);
 	// and handle dying
+	Particles* particleSystemOut = new Particles({ '.', '*', '0', 'o' }, B_CYAN, 30, 2, 15.f, m_physic->Velocity);
+	particleSystemOut->Init(m_world, m_physic->Position.x, m_physic->Position.y, 0, 0);
+	m_world->AddEntity(particleSystemOut);
+
+	Particles* particleSystemCenter = new Particles({ '#', '@', '&' }, B_PRPL, 10, 0.5, 30.f, m_physic->Velocity);
+	particleSystemCenter->Init(m_world, m_physic->Position.x, m_physic->Position.y, 0, 0);
+	m_world->AddEntity(particleSystemCenter);
 }
 
 Starship::Starship() {

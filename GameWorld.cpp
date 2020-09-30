@@ -104,12 +104,11 @@ void GameWorld::EmptyTrashcan()
 			if (entity == *itr) 
 			{
 				Entities.erase(itr); // remove from world
+				entity->Delete(); // ask entity to remove its components
+				delete entity; // free memory
 				break;
 			}
 		}
-
-		entity->Delete(); // ask entity to remove its components
-		delete entity; // free memory
 
 		m_trashcan.pop();
 	}

@@ -1,6 +1,9 @@
 // header file
 #include "Bullet.h"
 
+// other entities
+#include "Particles.h"
+
 // components and systems
 #include "ColliderSystem.h"
 #include "ColliderComponent.h"
@@ -60,13 +63,17 @@ void Bullet::Init(GameWorld* world, double startX, double startY, double velX, d
 void Bullet::HandleCollision(ColliderComponent* other)
 {
 	m_world->AddToTrashcan(this);
+
+	Particles* particleSystem = new Particles({ '+', '*', '.', '#' }, B_BLUE, 30, 2, 8.f, m_physic->Velocity);
+	particleSystem->Init(m_world, m_physic->Position.x, m_physic->Position.y, 0, 0);
+	m_world->AddEntity(particleSystem);
 }
 
 void Bullet::Update(float deltaTime)
 {
 	m_timeAlive += deltaTime;
 
-	if (m_timeAlive > TIME_BEFORE_TAG_SWAP) {
+	if (m_timeAlive > BLT_TIME_BEFORE_TAG_SWAP) {
 		m_collider->ComponentTag = Tag::PROJECTILE;
 	}
 }

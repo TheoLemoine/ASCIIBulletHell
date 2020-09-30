@@ -84,10 +84,13 @@
     <ClCompile Include="Ennemy.cpp">
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
-    <ClCompile Include="IEntity.cpp">
+    <ClCompile Include="EnnemySpawner.cpp">
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
-    <ClCompile Include="EnnemySpawner.cpp">
+    <ClCompile Include="Entity.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Particles.cpp">
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
   </ItemGroup>
@@ -141,6 +144,9 @@
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
     <ClInclude Include="EnnemySpawner.h">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Particles.h">
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
   </ItemGroup>

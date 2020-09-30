@@ -2,6 +2,7 @@
 #include "Vec2.h"
 #include <Windows.h>
 
+#define randFloat(HI, LO) LO + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(HI-LO)))
 
 const unsigned int GAME_WIDTH = 120;
 const unsigned int GAME_HEIGHT = 60;
@@ -18,8 +19,8 @@ const double SS_IMMOBILITY = 0.01;
 const double SS_BULLET_RATIO_SPEED = 2;
 
 //BULLET
-const double BULLET_SPEED = -2.5;
-const float TIME_BEFORE_TAG_SWAP = 1.f;
+const double BLT_SPEED = -2.5;
+const float BLT_TIME_BEFORE_TAG_SWAP = 20.f;
 
 //COLLIDER
 enum class 

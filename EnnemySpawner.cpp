@@ -1,9 +1,10 @@
 // header file
 #include "EnnemySpawner.h"
 
-#include "GameWorld.h";
-#include "Ennemy.h";
+#include "GameWorld.h"
+#include "Ennemy.h"
 #include "Constants.h"
+
 
 void EnnemySpawner::Init(GameWorld* world, double startX, double startY, double velX, double velY) 
 {
@@ -12,11 +13,12 @@ void EnnemySpawner::Init(GameWorld* world, double startX, double startY, double 
 
 void EnnemySpawner::Update(float deltaTime)
 {
-	if (m_currentSpawnCoolDown < 0.f) {
+	if (m_currentSpawnCoolDown < 0.f) 
+	{
 		m_currentSpawnCoolDown = m_spawnCoolDown;
 	
 		Ennemy* ennemy = new Ennemy();
-		ennemy->Init(m_world, GAME_WIDTH / 2, 0, 0, 1);
+		ennemy->Init(m_world, rand() % GAME_WIDTH, rand() % 4, (rand() % 30) / 10 - 1.5, (rand() % 30) / 10);
 		m_world->AddEntity(ennemy);
 	}
 	else 
