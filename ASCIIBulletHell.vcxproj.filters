@@ -87,6 +87,9 @@
     <ClCompile Include="IEntity.cpp">
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
+    <ClCompile Include="EnnemySpawner.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ASCIIRenderer.h">
@@ -135,6 +138,9 @@
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
     <ClInclude Include="Entity.h">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemySpawner.h">
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
   </ItemGroup>

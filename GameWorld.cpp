@@ -3,7 +3,7 @@
 
 // entities
 #include "Starship.h"
-#include "Ennemy.h"
+#include "EnnemySpawner.h"
 // systems
 #include "PhysicSystem.h"
 #include "DrawSystem.h"
@@ -18,7 +18,6 @@
 
 // class containing all objects and components to render
 GameWorld::GameWorld(ASCIIRenderer* renderer, GameClock* clock, Inputs* keyboard) {
-	SpawnEnnemyCooldown = 0;
 	Renderer = renderer;
 	Clock = clock;
 	Keyboard = keyboard;
@@ -44,9 +43,12 @@ GameWorld::~GameWorld() {
 void GameWorld::InitWorld() 
 {
 	Starship* player = new Starship();
-	Entities.push_back(player);
-
+	AddEntity(player);
 	player->Init(this, GAME_WIDTH / 2, GAME_HEIGHT / 2, 0, 0);
+
+	EnnemySpawner* spawner = new EnnemySpawner(SPAWN_COOLDOWN);
+	AddEntity(spawner);
+	spawner->Init(this, 0, 0, 0, 0);
 }
 
 void GameWorld::StartGameLoop() {
@@ -58,8 +60,6 @@ void GameWorld::StartGameLoop() {
 		// prepare
 		deltaTime = Clock->GetElapsedTimeSinceLastCall();
 		Renderer->Clear();
-
-		SpawnEnnemy(deltaTime);
 
 		// update components
 		Physics->UpdateComponents(deltaTime);
@@ -114,17 +114,3 @@ void GameWorld::EmptyTrashcan()
 		m_trashcan.pop();
 	}
 }
-
-void GameWorld::SpawnEnnemy(float deltaTime)
-{
-	SpawnEnnemyCooldown -= deltaTime;
-	if (SpawnEnnemyCooldown <= 0)
-	{
-		SpawnEnnemyCooldown = SPAWN_COOLDOWN;
-		Ennemy* ennemy = new Ennemy();
-		ennemy->Init(this, GAME_WIDTH / 2, 0, 0, 1);
-		AddEntity(ennemy);
-	}
-}
-
-

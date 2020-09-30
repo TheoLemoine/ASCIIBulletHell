@@ -29,7 +29,6 @@ private:
 	ColliderComponent* m_collider;
 	DrawComponent* m_draw;
 	Inputs* m_keyboard;
-	GameWorld* m_world;
 
 	float m_lastShoot;
 };

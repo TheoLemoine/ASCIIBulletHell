@@ -25,12 +25,9 @@ public:
 	Inputs* Keyboard;
 	std::vector<Entity*> Entities;
 
-	float SpawnEnnemyCooldown;
-
 	void InitWorld();
 	void StartGameLoop();
 	Entity* AddEntity(Entity* entity);
-	void SpawnEnnemy(float deltaTime);
 	void AddToTrashcan(Entity* entity);
 
 private:

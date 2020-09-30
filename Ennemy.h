@@ -23,7 +23,6 @@ public :
     ~Ennemy();
 
 private:
-    GameWorld* m_world;
     PhysicComponent* m_physic;
     ColliderComponent* m_collider;
     DrawComponent* m_draw;

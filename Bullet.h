@@ -26,7 +26,6 @@ private:
 	PhysicComponent* m_physic;
 	DrawComponent* m_draw;
 	ColliderComponent* m_collider;
-	GameWorld* m_world;
 
 	float m_timeAlive;
 };
