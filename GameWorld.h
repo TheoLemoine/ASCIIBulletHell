@@ -29,6 +29,7 @@ public:
 
 	void InitWorld();
 	void StartGameLoop();
+	void Reset();
 	Entity* AddEntity(Entity* entity);
 	void AddToTrashcan(Entity* entity);
 

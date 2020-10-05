@@ -80,8 +80,24 @@ void GameWorld::StartGameLoop() {
 
 		// clear all entities that were scheduled to be deleted
 		EmptyTrashcan();
+
+		if (Keyboard->ResetPress())
+			Reset();
 	}
 
+}
+
+void GameWorld::Reset()
+{
+	// delete all entities
+	for (Entity* entity : Entities)
+	{
+		entity->Delete();
+		delete entity;
+	}
+	ScoreBoard->Reset();
+	Entities.clear();
+	InitWorld();
 }
 
 Entity* GameWorld::AddEntity(Entity* entity)

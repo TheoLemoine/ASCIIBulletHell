@@ -27,3 +27,8 @@ void Score::AddToScore(int points)
 {
 	m_score += points;
 }
+
+void Score::Reset()
+{
+	m_score = 0;
+}

@@ -10,16 +10,16 @@ const unsigned int GAME_WIDTH = 120;
 const unsigned int GAME_HEIGHT = 60;
 
 const double MAX_VELOCITY = 20;
-const double ACCELERATION_POWER = 3;
 
 //SPACESHIP
 const int SS_HP = 3;
-const double SS_ACCELERATION_POWER = 7.5;
+const double SS_ACCELERATION_POWER = 5;
 const double SS_SIZE = 2;
 const Vec2  SS_SHOOT_POS = Vec2(0, -2);
 const double SS_COOLDOWN = 2;
-const double SS_IMMOBILITY = 0.01;
+const double SS_IMMOBILITY = 0.1;
 const double SS_BULLET_RATIO_SPEED = 2;
+const float SS_SPREAD_RATIO = 0.1;
 
 //BULLET
 const double BLT_SPEED = -2.5;

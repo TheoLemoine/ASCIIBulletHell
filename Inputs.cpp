@@ -8,6 +8,7 @@ constexpr int VK_KEY_D = 0x44;
 constexpr int VK_KEY_Q = 0x51;
 constexpr int VK_KEY_S = 0x53;
 constexpr int VK_KEY_Z = 0x5A;
+constexpr int VK_KEY_R = 0x52;
 
 
 bool Inputs::IsPress(int vkey)
@@ -67,4 +68,9 @@ void Inputs::DebugInputs(ASCIIRenderer* renderer, int x, int y)
 		renderer->SetAt(x + 4, y, 'S', 0x0E);
 	else
 		renderer->SetAt(x + 4, y, ' ', 0x0E);
+}
+
+bool Inputs::ResetPress()
+{
+	return IsPress(VK_KEY_R);
 }

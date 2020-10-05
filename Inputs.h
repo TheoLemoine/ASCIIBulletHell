@@ -16,4 +16,5 @@ public:
 	bool SpacePress();
 	bool EchapPress();
 	void DebugInputs(ASCIIRenderer* renderer, int x, int y);
+	bool ResetPress();
 };
