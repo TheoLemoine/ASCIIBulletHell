@@ -1,5 +1,6 @@
 #pragma once
 #include <Windows.h>
+#include <string>
 
 
 class ASCIIRenderer
@@ -17,6 +18,8 @@ public:
 	CHAR_INFO* GetAt(int x, int y);
 
 	void SetAt(int x, int y, CHAR AsciiChar, WORD Attributes);
+
+	void SetAt(int x, int y, std::string AsciiString, WORD Attributes);
 
 private:
 	HANDLE m_hOutput;

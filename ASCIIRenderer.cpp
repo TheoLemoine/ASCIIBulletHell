@@ -62,7 +62,7 @@ void ASCIIRenderer::Clear() {
 	{
 		for (int j = 0; j < m_dwBufferSize.Y; j++)
 		{
-			CHAR_INFO * info = &m_buffer[j * m_dwBufferSize.X + i];
+			CHAR_INFO* info = &m_buffer[j * m_dwBufferSize.X + i];
 			info->Char.AsciiChar = ' ';
 			info->Attributes = 0; // all black
 		}
@@ -73,14 +73,7 @@ void ASCIIRenderer::Render(float deltaTime) {
 
 	if (SHOW_FPS) {
 		int fps = 1 / deltaTime;
-
-		std::string stringFps = std::to_string(fps) + "FPS";
-
-		std::string::size_type length = stringFps.size();
-		for (std::string::size_type i = 0; i < length; ++i)
-		{
-			SetAt(GAME_WIDTH - (length - i), GAME_HEIGHT - 1, stringFps[i], B_CYAN);
-		}
+		SetAt(GAME_WIDTH, GAME_HEIGHT - 1, std::to_string(fps) + "FPS", B_CYAN);
 	}
 
 	WriteConsoleOutput(m_hOutput, m_buffer, m_dwBufferSize, m_dwBufferCoord, &m_rcRegion);
@@ -98,5 +91,20 @@ void ASCIIRenderer::SetAt(int x, int y, CHAR AsciiChar, WORD Attributes) {
 	CHAR_INFO* info = GetAt(x, y);
 	info->Char.AsciiChar = AsciiChar;
 	info->Attributes = Attributes;
+}
+
+void ASCIIRenderer::SetAt(int x, int y, std::string AsciiString, WORD Attributes) {
+	std::string::size_type length = AsciiString.size();
+
+	int startX = x;
+	if (startX + length >= GAME_WIDTH)
+		startX = GAME_WIDTH - length;
+	else if (startX < 0)
+		startX = 0;
+
+	for (std::string::size_type i = 0; i < length; ++i)
+	{
+		SetAt(startX + i, y, AsciiString[i], Attributes);
+	}
 }
 
