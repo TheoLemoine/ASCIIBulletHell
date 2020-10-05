@@ -123,8 +123,9 @@ void Starship::Shoot()
 {
 	//TODO INVOKE BULLET
 	Vec2 bulletPos = m_physic->Position + SS_SHOOT_POS;
+	float spread = randFloat(-SS_SPREAD_RATIO, SS_SPREAD_RATIO);
 	Vec2 bulletSpeed = Vec2(
-		m_physic->Velocity.x / SS_BULLET_RATIO_SPEED,
+		m_physic->Velocity.x / SS_BULLET_RATIO_SPEED + spread,
 		m_physic->Velocity.y / SS_BULLET_RATIO_SPEED + BLT_SPEED
 	);
 
