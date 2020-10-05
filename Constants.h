@@ -10,7 +10,7 @@ const unsigned int GAME_WIDTH = 120;
 const unsigned int GAME_HEIGHT = 60;
 
 const double MAX_VELOCITY = 20;
-const double ACCELERATION_POWER = 10;
+const double ACCELERATION_POWER = 3;
 
 //SPACESHIP
 const int SS_HP = 3;
@@ -30,18 +30,20 @@ const float ENMY_SPAWN_COOLDOWN = 10;
 const int ENMY_SCORE_VALUE = 5;
 
 //COLLIDER
-enum class 
-	Tag : unsigned int { 
-	SPACESHIP = 0, 
-	PROJECTILE = 1, 
-	ENNEMY  = 2
+enum class
+	Tag : unsigned int {
+	SPACESHIP = 0,
+	ENNEMY = 1,
+	NEW_PROJECTILE = 2,
+	PROJECTILE = 3
 };
 
 // collision in index of both tags show if they collide or not.
-const bool COLLISION_MATRIX[3][3] = {
-	{ false, true,  true,  },
-	{ true,  false, true,  },
-	{ true,  true,  false, },
+const bool COLLISION_MATRIX[4][4] = {
+	{ false, true,  false, true  },
+	{ true,  false, true, true },
+	{ false,  true,  false, false },
+	{ true,  true,  false, false }
 };
 
 constexpr int A_BLCK = 0x00; // all		black

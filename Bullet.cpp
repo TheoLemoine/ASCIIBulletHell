@@ -26,7 +26,7 @@ void Bullet::Init(GameWorld* world, double startX, double startY, double velX, d
 
 	m_physic = m_world->Physics->RequestComponent(startX, startY, velX, velY);
 
-	m_collider = m_world->Colliders->RequestComponent(m_physic, 1, Tag::SPACESHIP);
+	m_collider = m_world->Colliders->RequestComponent(m_physic, 1, Tag::NEW_PROJECTILE);
 	// bind collision event
 	m_collider->AddCollisionListener(std::bind(&Bullet::HandleCollision, this, std::placeholders::_1));
 
