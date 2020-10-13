@@ -156,6 +156,7 @@
     <ClCompile Include="PhysicComponent.cpp" />
     <ClCompile Include="PhysicSystem.cpp" />
     <ClCompile Include="Score.cpp" />
+    <ClCompile Include="SoundSystem.cpp" />
     <ClCompile Include="Starship.cpp" />
     <ClCompile Include="Vec2.cpp" />
   </ItemGroup>
@@ -175,6 +176,7 @@
     <ClInclude Include="PhysicComponent.h" />
     <ClInclude Include="PhysicSystem.h" />
     <ClInclude Include="Score.h" />
+    <ClInclude Include="SoundSystem.h" />
     <ClInclude Include="Starship.h" />
     <ClInclude Include="GameClock.h" />
     <ClInclude Include="GameWorld.h" />

@@ -8,6 +8,7 @@
 #include "PhysicSystem.h"
 #include "DrawSystem.h"
 #include "ColliderSystem.h"
+#include "SoundSystem.h"
 // game utility
 #include "Entity.h"
 #include "GameClock.h"
@@ -26,6 +27,7 @@ GameWorld::GameWorld(ASCIIRenderer* renderer, GameClock* clock, Inputs* keyboard
 	Physics = new PhysicSystem();
 	Drawer = new DrawSystem(Renderer);
 	Colliders = new ColliderSystem();
+	Sound = new SoundSystem();
 }
 
 GameWorld::~GameWorld() {

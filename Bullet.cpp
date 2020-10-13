@@ -11,6 +11,7 @@
 #include "DrawComponent.h"
 #include "PhysicSystem.h"
 #include "PhysicComponent.h"
+#include "SoundSystem.h"
 // game utility
 #include "GameWorld.h"
 #include "Entity.h"
@@ -63,6 +64,7 @@ void Bullet::Init(GameWorld* world, double startX, double startY, double velX, d
 void Bullet::HandleCollision(ColliderComponent* other)
 {
 	m_world->AddToTrashcan(this);
+	m_world->Sound->AsyncBeep(340, 200);
 
 	Particles* particleSystem = new Particles({ '+', '*', '.', '#' }, B_BLUE, 30, 2, 8.f, m_physic->Velocity);
 	particleSystem->Init(m_world, m_physic->Position.x, m_physic->Position.y, 0, 0);

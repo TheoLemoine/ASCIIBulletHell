@@ -71,8 +71,8 @@ void ASCIIRenderer::Clear() {
 
 void ASCIIRenderer::Render(float deltaTime) {
 
-	if (SHOW_FPS) {
-		int fps = 1 / deltaTime;
+	if (SHOW_FPS && deltaTime != 0.f) {
+		int fps = (int)(1 / deltaTime);
 		SetAt(GAME_WIDTH, GAME_HEIGHT - 1, std::to_string(fps) + "FPS", B_CYAN);
 	}
 

@@ -9,6 +9,7 @@ class Score;
 class ColliderSystem;
 class DrawSystem;
 class PhysicSystem;
+class SoundSystem;
 class Entity;
 
 
@@ -21,6 +22,7 @@ public:
 	PhysicSystem* Physics;
 	DrawSystem* Drawer;
 	ColliderSystem* Colliders;
+	SoundSystem* Sound;
 	ASCIIRenderer* Renderer;
 	GameClock* Clock;
 	Inputs* Keyboard;

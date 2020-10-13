@@ -19,7 +19,7 @@ const Vec2  SS_SHOOT_POS = Vec2(0, -2);
 const double SS_COOLDOWN = 2;
 const double SS_IMMOBILITY = 0.1;
 const double SS_BULLET_RATIO_SPEED = 2;
-const float SS_SPREAD_RATIO = 0.1;
+const float SS_SPREAD_RATIO = 0.1f;
 
 //BULLET
 const double BLT_SPEED = -2.5;
