@@ -18,6 +18,7 @@
 // external deps
 #include <Windows.h>
 #include <functional>
+#include <iostream>
 
 
 void Starship::Init(GameWorld* world, double startX, double startY, double velX, double velY) {
@@ -84,22 +85,27 @@ void Starship::Update(float deltaTime) {
 	if (m_physic->Velocity.Dist(Vec2(0, 0)) <= SS_IMMOBILITY)
 		m_physic->Velocity = Vec2(0, 0);
 
-	bool downed = m_keyboard->DownPress();
-	bool uped = m_keyboard->UpPress();
-	bool righted = m_keyboard->RightPress();
-	bool lefted = m_keyboard->LeftPress();
+	float downed = m_keyboard->DownPress();
+	float uped = m_keyboard->UpPress();
+	float righted = m_keyboard->RightPress();
+	float lefted = m_keyboard->LeftPress();
+
+	if(downed != 0 || lefted != 0 || righted != 0 || uped != 0)
+	std::cout << "down : " << downed << std::endl << "up : " << uped << std::endl << "right : " << righted << std::endl << "left : " << lefted << std::endl;
+
+
 
 	//Accelerate up and down
-	if (downed || (m_physic->Velocity.y < 0 && !uped))
-		m_physic->Acceleration.y = SS_ACCELERATION_POWER;
-	if (uped || (m_physic->Velocity.y > 0 && !downed))
-		m_physic->Acceleration.y = -SS_ACCELERATION_POWER;
+	if (downed != 0 || (m_physic->Velocity.y < 0 && !uped))
+		m_physic->Acceleration.y = SS_ACCELERATION_POWER * downed;
+	if (uped != 0 || (m_physic->Velocity.y > 0 && !downed))
+		m_physic->Acceleration.y = -SS_ACCELERATION_POWER * uped;
 
 	//Accelerate right and left
-	if (lefted || (m_physic->Velocity.x > 0 && !righted))
-		m_physic->Acceleration.x = -SS_ACCELERATION_POWER;
-	if (righted || (m_physic->Velocity.x < 0 && !lefted))
-		m_physic->Acceleration.x = SS_ACCELERATION_POWER;
+	if (lefted != 0 || (m_physic->Velocity.x > 0 && !righted))
+		m_physic->Acceleration.x = -SS_ACCELERATION_POWER * lefted;
+	if (righted != 0 || (m_physic->Velocity.x < 0 && !lefted))
+		m_physic->Acceleration.x = SS_ACCELERATION_POWER * righted;
 	
 
 	m_lastShoot -= deltaTime;

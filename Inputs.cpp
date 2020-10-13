@@ -3,6 +3,7 @@
 
 #include "ASCIIRenderer.h"
 #include <WinUser.h>
+#include <iostream>
 
 constexpr int VK_KEY_D = 0x44;
 constexpr int VK_KEY_Q = 0x51;
@@ -16,24 +17,82 @@ bool Inputs::IsPress(int vkey)
 	return GetAsyncKeyState(vkey);
 }
 
-bool Inputs::UpPress()
+bool Inputs::GetGamepadState()
 {
-	return IsPress(VK_KEY_Z) || IsPress(VK_UP);
+	return (XInputGetState(0, &state) == ERROR_SUCCESS);
 }
 
-bool Inputs::DownPress()
+Inputs::Inputs()
 {
-	return IsPress(VK_KEY_S) || IsPress(VK_DOWN);
+	controllerId = -1;
+
+	for (DWORD i = 0; i < XUSER_MAX_COUNT; i++)
+	{
+		ZeroMemory(&state, sizeof(XINPUT_STATE));
+
+		if (XInputGetState(i, &state) == ERROR_SUCCESS)
+		{
+			controllerId = i;
+			break;
+		}
+	}
+	std::cout << controllerId << "/" << XUSER_MAX_COUNT << std::endl;
 }
 
-bool Inputs::LeftPress()
+float Inputs::UpPress()
 {
-	return IsPress(VK_KEY_Q) || IsPress(VK_LEFT);
+	//KEYBOARD
+	float value = IsPress(VK_KEY_Z) || IsPress(VK_UP) ? 1 : 0;
+	//GAMEPAD
+	if (controllerId >= 0)
+	{
+		value = fmaxf(controllerId, (float)state.Gamepad.sThumbLY / 32767);
+		std::cout << "joy : " << value << std::endl;
+
+	}
+
+	return value;
 }
 
-bool Inputs::RightPress()
+float Inputs::DownPress()
 {
-	return IsPress(VK_KEY_D) || IsPress(VK_RIGHT);
+	float value = IsPress(VK_KEY_S) || IsPress(VK_DOWN) ? 1 : 0;
+	
+	//GAMEPAD
+	if (controllerId >= 0)
+	{
+		value = -1.0*fminf(controllerId, (float)state.Gamepad.sThumbLY / 32767);
+		std::cout << "joy : " << value << std::endl;
+
+	}
+	return value;
+}
+
+float Inputs::LeftPress()
+{
+	float value = IsPress(VK_KEY_Q) || IsPress(VK_LEFT) ? 1 : 0;
+
+	//GAMEPAD
+	if (controllerId >= 0)
+	{
+		value = -1.0 * fminf(controllerId, (float)state.Gamepad.sThumbLY / 32767);
+		std::cout << "joy : " << value << std::endl;
+
+	}
+	return value;
+}
+
+float Inputs::RightPress()
+{
+	float value = IsPress(VK_KEY_D) || IsPress(VK_RIGHT) ? 1 : 0;
+
+	//GAMEPAD
+	if (controllerId >= 0)
+	{
+		value = -1.0 * fminf(controllerId, (float)state.Gamepad.sThumbLY / 32767);
+		std::cout << "joy : " << value << std::endl;
+	}
+	return value;
 }
 
 bool Inputs::SpacePress()
