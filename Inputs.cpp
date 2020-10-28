@@ -36,7 +36,7 @@ Inputs::Inputs()
 			break;
 		}
 	}
-	std::cout << controllerId << "/" << XUSER_MAX_COUNT << std::endl;
+	//std::cout << controllerId << "/" << XUSER_MAX_COUNT << std::endl;
 }
 
 float Inputs::UpPress()
@@ -47,7 +47,7 @@ float Inputs::UpPress()
 	if (controllerId >= 0)
 	{
 		value = fmaxf(controllerId, (float)state.Gamepad.sThumbLY / 32767);
-		std::cout << "joy : " << value << std::endl;
+		//std::cout << "joy : " << value << std::endl;
 
 	}
 
@@ -62,7 +62,7 @@ float Inputs::DownPress()
 	if (controllerId >= 0)
 	{
 		value = -1.0*fminf(controllerId, (float)state.Gamepad.sThumbLY / 32767);
-		std::cout << "joy : " << value << std::endl;
+		//std::cout << "joy : " << value << std::endl;
 
 	}
 	return value;
@@ -76,7 +76,7 @@ float Inputs::LeftPress()
 	if (controllerId >= 0)
 	{
 		value = -1.0 * fminf(controllerId, (float)state.Gamepad.sThumbLY / 32767);
-		std::cout << "joy : " << value << std::endl;
+		//std::cout << "joy : " << value << std::endl;
 
 	}
 	return value;
@@ -90,7 +90,7 @@ float Inputs::RightPress()
 	if (controllerId >= 0)
 	{
 		value = -1.0 * fminf(controllerId, (float)state.Gamepad.sThumbLY / 32767);
-		std::cout << "joy : " << value << std::endl;
+		//std::cout << "joy : " << value << std::endl;
 	}
 	return value;
 }

@@ -90,8 +90,8 @@ void Starship::Update(float deltaTime) {
 	float righted = m_keyboard->RightPress();
 	float lefted = m_keyboard->LeftPress();
 
-	if(downed != 0 || lefted != 0 || righted != 0 || uped != 0)
-	std::cout << "down : " << downed << std::endl << "up : " << uped << std::endl << "right : " << righted << std::endl << "left : " << lefted << std::endl;
+	//if(downed != 0 || lefted != 0 || righted != 0 || uped != 0)
+	//std::cout << "down : " << downed << std::endl << "up : " << uped << std::endl << "right : " << righted << std::endl << "left : " << lefted << std::endl;
 
 
 
