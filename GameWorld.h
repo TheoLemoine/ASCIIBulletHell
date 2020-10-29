@@ -8,6 +8,7 @@ class Inputs;
 class Score;
 class ColliderSystem;
 class DrawSystem;
+class DrawTextSystem;
 class PhysicSystem;
 class SoundSystem;
 class Entity;
@@ -21,6 +22,7 @@ public:
 
 	PhysicSystem* Physics;
 	DrawSystem* Drawer;
+	DrawTextSystem* TextDrawer;
 	ColliderSystem* Colliders;
 	SoundSystem* Sound;
 	ASCIIRenderer* Renderer;

@@ -147,6 +147,8 @@
     <ClCompile Include="ColliderSystem.cpp" />
     <ClCompile Include="DrawComponent.cpp" />
     <ClCompile Include="DrawSystem.cpp" />
+    <ClCompile Include="DrawTextComponent.cpp" />
+    <ClCompile Include="DrawTextSystem.cpp" />
     <ClCompile Include="Ennemy.cpp" />
     <ClCompile Include="EnnemySpawner.cpp" />
     <ClCompile Include="GameClock.cpp" />
@@ -160,7 +162,9 @@
     <ClCompile Include="Score.cpp" />
     <ClCompile Include="SoundSystem.cpp" />
     <ClCompile Include="Starship.cpp" />
-    <ClCompile Include="Vec2.cpp" />
+    <ClCompile Include="UIDebug.cpp" />
+    <ClCompile Include="UIEndText.cpp" />
+    <ClCompile Include="UIScoreText.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ASCIIRenderer.h" />
@@ -170,6 +174,8 @@
     <ClInclude Include="Constants.h" />
     <ClInclude Include="DrawComponent.h" />
     <ClInclude Include="DrawSystem.h" />
+    <ClInclude Include="DrawTextComponent.h" />
+    <ClInclude Include="DrawTextSystem.h" />
     <ClInclude Include="Ennemy.h" />
     <ClInclude Include="EnnemySpawner.h" />
     <ClInclude Include="Entity.h" />
@@ -182,6 +188,9 @@
     <ClInclude Include="Starship.h" />
     <ClInclude Include="GameClock.h" />
     <ClInclude Include="GameWorld.h" />
+    <ClInclude Include="UIDebug.h" />
+    <ClInclude Include="UIEndText.h" />
+    <ClInclude Include="UIScoreText.h" />
     <ClInclude Include="Vec2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

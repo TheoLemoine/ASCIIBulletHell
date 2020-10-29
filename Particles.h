@@ -16,7 +16,7 @@ public:
     void Update(float deltaTime) override;
     void Delete() override;
 
-    Particles(std::vector<char> sprites, int color, int nbParticles, double force, float duration, Vec2 baseVelocity);
+    Particles(std::vector<char> sprites, int color, int nbParticles, double force, float duration, Vec2<double> baseVelocity);
     ~Particles();
 
 private:
@@ -26,7 +26,7 @@ private:
     double m_force;
     float m_duration;
     float m_lifetime;
-    Vec2 m_baseVelocity;
+    Vec2<double> m_baseVelocity;
 
     std::vector<std::pair<PhysicComponent*, DrawComponent*>> m_particles;
 };

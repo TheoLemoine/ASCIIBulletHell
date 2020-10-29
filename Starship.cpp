@@ -3,13 +3,17 @@
 // other entities
 #include "Bullet.h"
 #include "Particles.h"
+#include "UIEndText.h"
 // components and systems
 #include "ColliderSystem.h"
 #include "ColliderComponent.h"
 #include "DrawComponent.h"
 #include "DrawSystem.h"
+#include "DrawTextComponent.h"
+#include "DrawTextSystem.h"
 #include "PhysicComponent.h"
 #include "PhysicSystem.h"
+#include "SoundSystem.h"
 // game utility
 #include "GameWorld.h"
 #include "Inputs.h"
@@ -75,6 +79,8 @@ void Starship::Init(GameWorld* world, double startX, double startY, double velX,
 		},
 	5, 4, 2);
 
+	m_healthBar = m_world->TextDrawer->RequestComponent(Vec2<unsigned int>(0, 0), "###", B_CYAN);
+
 	m_keyboard = m_world->Keyboard;
 }
 
@@ -82,8 +88,8 @@ void Starship::Update(float deltaTime) {
 	m_physic->Acceleration.y = 0;
 	m_physic->Acceleration.x = 0;
 
-	if (m_physic->Velocity.Dist(Vec2(0, 0)) <= SS_IMMOBILITY)
-		m_physic->Velocity = Vec2(0, 0);
+	if (m_physic->Velocity.Dist(Vec2<double>(0, 0)) <= SS_IMMOBILITY)
+		m_physic->Velocity = Vec2<double>(0, 0);
 
 	float downed = m_keyboard->DownPress();
 	float uped = m_keyboard->UpPress();
@@ -122,15 +128,16 @@ void Starship::Delete() {
 	// ask systems to delete linked components
 	m_world->Physics->DeleteComponent(m_physic);
 	m_world->Drawer->DeleteComponent(m_draw);
+	m_world->TextDrawer->DeleteComponent(m_healthBar);
 	m_world->Colliders->DeleteComponent(m_collider);
 }
 
 void Starship::Shoot()
 {
 	//TODO INVOKE BULLET
-	Vec2 bulletPos = m_physic->Position + SS_SHOOT_POS;
+	Vec2<double> bulletPos = m_physic->Position + SS_SHOOT_POS;
 	float spread = randFloat(-SS_SPREAD_RATIO, SS_SPREAD_RATIO);
-	Vec2 bulletSpeed = Vec2(
+	Vec2<double> bulletSpeed = Vec2<double>(
 		m_physic->Velocity.x / SS_BULLET_RATIO_SPEED + spread,
 		m_physic->Velocity.y / SS_BULLET_RATIO_SPEED + BLT_SPEED
 	);
@@ -146,6 +153,17 @@ void Starship::HandleCollision(ColliderComponent* other)
 
 	m_hp--;
 
+	// low sound for 'player got hit'
+	m_world->Sound->AsyncBeep(260, 600);
+
+	// recreate health bar
+	m_healthBar->m_content = "";
+	for (int i = 0; i < m_hp; i++)
+	{
+		m_healthBar->m_content += "#";
+	}
+
+	// die with lots of particles
 	if (m_hp <= 0) 
 	{
 
@@ -159,6 +177,10 @@ void Starship::HandleCollision(ColliderComponent* other)
 		Particles* particleSystemCenter = new Particles({ '#', '@', '&' }, B_PRPL, 10, 0.5, 30.f, m_physic->Velocity);
 		particleSystemCenter->Init(m_world, m_physic->Position.x, m_physic->Position.y, 0, 0);
 		m_world->AddEntity(particleSystemCenter);
+
+		UIEndText* endText = new UIEndText();
+		endText->Init(m_world, GAME_WIDTH / 2, GAME_HEIGHT / 2, 0, 0);
+		m_world->AddEntity(endText);
 	}
 	else
 	{

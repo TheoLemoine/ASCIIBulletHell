@@ -6,8 +6,8 @@ class Score
 {
 public:
 	Score(ASCIIRenderer* renderer);
-	void DrawScore();
 	void AddToScore(int points);
+	int GetScore();
 	void Reset();
 private:
 	ASCIIRenderer* m_renderer;

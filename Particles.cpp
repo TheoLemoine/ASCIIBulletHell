@@ -55,7 +55,7 @@ void Particles::Delete()
 	}
 }
 
-Particles::Particles(std::vector<char> sprites, int color, int nbParticles, double force, float duration, Vec2 baseVelocity = Vec2(0, 0))
+Particles::Particles(std::vector<char> sprites, int color, int nbParticles, double force, float duration, Vec2<double> baseVelocity = Vec2<double>(0, 0))
 {
 	m_sprites = sprites;
 	m_color = color;

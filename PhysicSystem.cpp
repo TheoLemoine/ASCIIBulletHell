@@ -41,7 +41,7 @@ void PhysicSystem::UpdateComponents(float deltaTime)
 		double speedX = component->Velocity.x;
 		double speedY = component->Velocity.y / 2;
 
-		component->Position += Vec2(speedX, speedY) * deltaTime;
+		component->Position += Vec2<double>(speedX, speedY) * deltaTime;
 
 		// check for bounces on left and right
 		if ((component->Position.x > GAME_WIDTH && component->Velocity.x > 0)

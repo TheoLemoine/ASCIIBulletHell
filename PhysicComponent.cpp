@@ -6,9 +6,9 @@
 
 PhysicComponent::PhysicComponent(double posX, double posY, double velX, double velY)
 {
-	Position = Vec2(posX, posY);
-	Velocity = Vec2(velX, velY);
-	Acceleration = Vec2(0, 0);
+	Position = Vec2<double>(posX, posY);
+	Velocity = Vec2<double>(velX, velY);
+	Acceleration = Vec2<double>(0, 0);
 }
 
 

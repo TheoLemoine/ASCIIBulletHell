@@ -4,9 +4,12 @@
 // entities
 #include "Starship.h"
 #include "EnnemySpawner.h"
+#include "UIDebug.h"
+#include "UIScoreText.h"
 // systems
 #include "PhysicSystem.h"
 #include "DrawSystem.h"
+#include "DrawTextSystem.h"
 #include "ColliderSystem.h"
 #include "SoundSystem.h"
 // game utility
@@ -26,6 +29,7 @@ GameWorld::GameWorld(ASCIIRenderer* renderer, GameClock* clock, Inputs* keyboard
 	ScoreBoard = scoreBoard;
 	Physics = new PhysicSystem();
 	Drawer = new DrawSystem(Renderer);
+	TextDrawer = new DrawTextSystem(Renderer);
 	Colliders = new ColliderSystem();
 	Sound = new SoundSystem();
 }
@@ -34,6 +38,7 @@ GameWorld::~GameWorld() {
 	// delete all systems
 	delete Physics;
 	delete Drawer;
+	delete TextDrawer;
 	delete Colliders;
 
 	// delete all entities
@@ -49,6 +54,16 @@ void GameWorld::InitWorld()
 	Starship* player = new Starship();
 	AddEntity(player);
 	player->Init(this, GAME_WIDTH / 2, GAME_HEIGHT / 2, 0, 0);
+
+	if (SHOW_FPS) {
+		UIDebug* debug = new UIDebug();
+		AddEntity(debug);
+		debug->Init(this, 0, 0, 0, 0);
+	}
+
+	UIScoreText* scoreText = new UIScoreText();
+	AddEntity(scoreText);
+	scoreText->Init(this, 0, 0, 0, 0);
 
 	EnnemySpawner* spawner = new EnnemySpawner(ENMY_SPAWN_COOLDOWN);
 	AddEntity(spawner);
@@ -69,6 +84,7 @@ void GameWorld::StartGameLoop() {
 		Physics->UpdateComponents(deltaTime);
 		Colliders->UpdateComponents(deltaTime);
 		Drawer->UpdateComponents(deltaTime);
+		TextDrawer->UpdateComponents();
 
 		// update entities
 		for (size_t i = 0; i < Entities.size(); i++)
@@ -77,14 +93,10 @@ void GameWorld::StartGameLoop() {
 		}
 
 		// render
-		ScoreBoard->DrawScore();
 		Renderer->Render(deltaTime);
 
 		// clear all entities that were scheduled to be deleted
 		EmptyTrashcan();
-
-		if (Keyboard->ResetPress())
-			Reset();
 	}
 
 }

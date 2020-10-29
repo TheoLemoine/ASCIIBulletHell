@@ -6,6 +6,7 @@ class Inputs;
 struct ColliderComponent;
 struct PhysicComponent;
 struct DrawComponent;
+struct DrawTextComponent;
 
 
 class Starship : public Entity
@@ -28,6 +29,7 @@ private:
 	PhysicComponent* m_physic;
 	ColliderComponent* m_collider;
 	DrawComponent* m_draw;
+	DrawTextComponent* m_healthBar;
 	Inputs* m_keyboard;
 
 	float m_lastShoot;

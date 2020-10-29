@@ -5,9 +5,9 @@
 struct PhysicComponent
 {
 public:
-	Vec2 Position;
-	Vec2 Velocity;
-	Vec2 Acceleration;
+	Vec2<double> Position;
+	Vec2<double> Velocity;
+	Vec2<double> Acceleration;
 
 	PhysicComponent(double posX, double posY, double velX, double velY);
 

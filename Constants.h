@@ -15,7 +15,7 @@ const double MAX_VELOCITY = 20;
 const int SS_HP = 3;
 const double SS_ACCELERATION_POWER = 5;
 const double SS_SIZE = 2;
-const Vec2  SS_SHOOT_POS = Vec2(0, -2);
+const Vec2<double>  SS_SHOOT_POS = Vec2<double>(0, -2);
 const double SS_COOLDOWN = 2;
 const double SS_IMMOBILITY = 0.1;
 const double SS_BULLET_RATIO_SPEED = 2;
@@ -30,12 +30,18 @@ const float ENMY_SPAWN_COOLDOWN = 10;
 const int ENMY_SCORE_VALUE = 5;
 
 //COLLIDER
-enum class
-	Tag : unsigned int {
+enum class Tag : unsigned int {
 	SPACESHIP = 0,
 	ENNEMY = 1,
 	NEW_PROJECTILE = 2,
 	PROJECTILE = 3
+};
+
+// Text alignement values
+enum class TextHorzAlign {
+	Left,
+	Right,
+	Center
 };
 
 // collision in index of both tags show if they collide or not.
