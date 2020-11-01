@@ -91,10 +91,10 @@ void Starship::Update(float deltaTime) {
 	if (m_physic->Velocity.Dist(Vec2<double>(0, 0)) <= SS_IMMOBILITY)
 		m_physic->Velocity = Vec2<double>(0, 0);
 
-	float downed = m_keyboard->DownPress();
-	float uped = m_keyboard->UpPress();
-	float righted = m_keyboard->RightPress();
-	float lefted = m_keyboard->LeftPress();
+	float down = m_keyboard->DownPress();
+	float up = m_keyboard->UpPress();
+	float right = m_keyboard->RightPress();
+	float left = m_keyboard->LeftPress();
 
 	//if(downed != 0 || lefted != 0 || righted != 0 || uped != 0)
 	//std::cout << "down : " << downed << std::endl << "up : " << uped << std::endl << "right : " << righted << std::endl << "left : " << lefted << std::endl;
@@ -102,17 +102,20 @@ void Starship::Update(float deltaTime) {
 
 
 	//Accelerate up and down
-	if (downed != 0 || (m_physic->Velocity.y < 0 && !uped))
-		m_physic->Acceleration.y = SS_ACCELERATION_POWER * downed;
-	if (uped != 0 || (m_physic->Velocity.y > 0 && !downed))
-		m_physic->Acceleration.y = -SS_ACCELERATION_POWER * uped;
+	if (down != 0 || (m_physic->Velocity.y < 0 && up == 0))
+		m_physic->Acceleration.y = SS_ACCELERATION_POWER * down;
+	if (up != 0 || (m_physic->Velocity.y > 0 && down == 0))
+		m_physic->Acceleration.y = -SS_ACCELERATION_POWER * up;
 
 	//Accelerate right and left
-	if (lefted != 0 || (m_physic->Velocity.x > 0 && !righted))
-		m_physic->Acceleration.x = -SS_ACCELERATION_POWER * lefted;
-	if (righted != 0 || (m_physic->Velocity.x < 0 && !lefted))
-		m_physic->Acceleration.x = SS_ACCELERATION_POWER * righted;
+	if (left != 0 || (m_physic->Velocity.x > 0 && right == 0))
+		m_physic->Acceleration.x = -SS_ACCELERATION_POWER * left;
+	if (right != 0 || (m_physic->Velocity.x < 0 && left == 0))
+		m_physic->Acceleration.x = SS_ACCELERATION_POWER * right;
 	
+	//Deccelerate
+	if (left == 0 && right == 0 && up == 0 && down == 0)
+		m_physic->Acceleration = m_physic->Velocity * -1;
 
 	m_lastShoot -= deltaTime;
 	//Shoot
