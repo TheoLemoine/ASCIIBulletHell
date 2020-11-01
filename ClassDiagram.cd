@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="ASCIIRenderer">
+    <Position X="4.25" Y="4.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAQAAgAAAAAAgEAAAAAAAAIAAAAAABAAAMBAAAA=</HashCode>
+      <FileName>ASCIIRenderer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Inputs">
+    <Position X="16" Y="4.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>ggAAAAAAAAAAAAIADAAQAAIAEAAAAAgkAAAAAAADAAA=</HashCode>
+      <FileName>Inputs.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Score">
+    <Position X="13" Y="7" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAABAgAAAAAAAAAAAAAAAAAAAAAiQAAAAA=</HashCode>
+      <FileName>Score.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_renderer" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="GameClock">
+    <Position X="7.75" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>IAgAAAAAgAAQAAAAEAAAEAAIAAAQAAEEAAAAAAAQAAA=</HashCode>
+      <FileName>GameClock.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameWorld">
+    <Position X="8.5" Y="8.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>ABgAAAAAABAABAAAAgIBAEAAAACAAAEQRIGAAAEAAgA=</HashCode>
+      <FileName>GameWorld.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="Clock" />
+      <Field Name="Colliders" />
+      <Field Name="Drawer" />
+      <Field Name="Keyboard" />
+      <Field Name="Physics" />
+      <Field Name="Renderer" />
+      <Field Name="ScoreBoard" />
+      <Field Name="Sound" />
+      <Field Name="TextDrawer" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Bullet">
+    <Position X="15.25" Y="12.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAQQAAAEAAAAAAAAAAAAAAASAAECAAAEAAACAAAQAAA=</HashCode>
+      <FileName>Bullet.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_collider" />
+      <Field Name="m_draw" />
+      <Field Name="m_physic" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Ennemy">
+    <Position X="20.25" Y="12.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>IAYQAAgEAAAAAAAAAAAAAAACAAECAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Ennemy.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_collider" />
+      <Field Name="m_draw" />
+      <Field Name="m_physic" />
+      <Field Name="m_score" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="EnnemySpawner">
+    <Position X="0.5" Y="12.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAIAAAAAAAAAAACACAAAEAAAAAAAACAIAAAAA=</HashCode>
+      <FileName>EnnemySpawner.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entity">
+    <Position X="11.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAACAAAAAAAAAAAAAEAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Entity.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_world" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Particles">
+    <Position X="7.25" Y="12.75" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAQBAAADAAAgAAAAAAgACEEAAAAQAACAAgAAAA=</HashCode>
+      <FileName>Particles.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Starship">
+    <Position X="12.5" Y="12.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAQQAAgEAAAABAAAAAABAAACAANCAAgABAACAAAAAAA=</HashCode>
+      <FileName>Starship.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_collider" />
+      <Field Name="m_draw" />
+      <Field Name="m_healthBar" />
+      <Field Name="m_keyboard" />
+      <Field Name="m_physic" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="UIDebug">
+    <Position X="18" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAIAAAAAAAAEAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>UIDebug.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_fpsDrawer" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="UIEndText">
+    <Position X="23" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAIAAAAAAAAAAAEAAACAAAACAAAAAAA=</HashCode>
+      <FileName>UIEndText.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_gameOverText" />
+      <Field Name="m_scoreText" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="UIScoreText">
+    <Position X="3.75" Y="12.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAEAAACAAAACAAAAAAA=</HashCode>
+      <FileName>UIScoreText.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ColliderSystem">
+    <Position X="2.5" Y="16.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAQAAAAAAEAAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>ColliderSystem.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DrawSystem">
+    <Position X="0.5" Y="7.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAIAAAQAAAAAAEAAAAAAAAAAAAQAAAIA=</HashCode>
+      <FileName>DrawSystem.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_renderer" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DrawTextSystem">
+    <Position X="4.5" Y="9" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAIAAAQAAAAAAEAAAAAAAAAAAAQAAAIA=</HashCode>
+      <FileName>DrawTextSystem.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_renderer" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PhysicSystem">
+    <Position X="11.5" Y="4.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAQAAAAAAEAAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>PhysicSystem.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoundSystem">
+    <Position X="7.25" Y="4.75" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAACAAAAAAAAAQAAgAAAARAAgAAAAAAAAIAAQ=</HashCode>
+      <FileName>SoundSystem.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="ColliderComponent">
+    <Position X="16" Y="9" Width="3" />
+    <TypeIdentifier>
+      <HashCode>CCAAAgAAAAAAgAAAAAAABAAAEAAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>ColliderComponent.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="ComponentTag" />
+      <Field Name="Physic" />
+    </ShowAsAssociation>
+  </Struct>
+  <Struct Name="DrawComponent">
+    <Position X="13.75" Y="16.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAhAAAAAAAAAAABEQAAAAAAAEAQAEAAAAAAAA=</HashCode>
+      <FileName>DrawComponent.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="DrawTextComponent">
+    <Position X="17.25" Y="16" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAABAAAQAgAAAAgAAAA=</HashCode>
+      <FileName>DrawTextComponent.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="PhysicComponent">
+    <Position X="20" Y="9.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABgAAAAAAAAAAAAAAAAAAAEAAAEAgA=</HashCode>
+      <FileName>PhysicComponent.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Vec2&lt;T&gt;">
+    <Position X="23" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAAAAAQAAAAAAAAAAAABggAAAAgA=</HashCode>
+      <FileName>Vec2.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Typedef Name="CollisionCallback" Collapsed="true">
+    <Position X="25.5" Y="2.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ColliderComponent.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Enum Name="Tag">
+    <Position X="19.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAIAQAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Constants.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="TextHorzAlign">
+    <Position X="25.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACACAAAAIAAA=</HashCode>
+      <FileName>Constants.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
