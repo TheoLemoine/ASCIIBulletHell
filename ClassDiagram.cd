@@ -1,21 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
   <Class Name="ASCIIRenderer">
-    <Position X="4.25" Y="4.75" Width="2.25" />
+    <Position X="35.25" Y="14.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>IAAAAAQAAgAAAAAAgEAAAAAAAAIAAAAAABAAAMBAAAA=</HashCode>
       <FileName>ASCIIRenderer.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Inputs">
-    <Position X="16" Y="4.25" Width="2" />
+    <Position X="18.5" Y="0.5" Width="2" />
     <TypeIdentifier>
       <HashCode>ggAAAAAAAAAAAAIADAAQAAIAEAAAAAgkAAAAAAADAAA=</HashCode>
       <FileName>Inputs.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Score">
-    <Position X="13" Y="7" Width="1.75" />
+    <Position X="3" Y="21.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAIAAAAAAAAABAgAAAAAAAAAAAAAAAAAAAAAiQAAAAA=</HashCode>
       <FileName>Score.h</FileName>
@@ -25,64 +25,146 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="GameClock">
-    <Position X="7.75" Y="0.5" Width="2.75" />
+    <Position X="9.75" Y="1.25" Width="2.75" />
     <TypeIdentifier>
       <HashCode>IAgAAAAAgAAQAAAAEAAAEAAIAAAQAAEEAAAAAAAQAAA=</HashCode>
       <FileName>GameClock.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GameWorld">
-    <Position X="8.5" Y="8.5" Width="2.25" />
+    <Position X="10" Y="8.25" Width="2.25" />
+    <AssociationLine Name="Physics" Type="PhysicSystem" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="12.25" Y="10.562" />
+        <Point X="15.917" Y="10.562" Type="JumpStart" />
+        <Point X="16.083" Y="10.562" Type="JumpEnd" />
+        <Point X="18.688" Y="10.562" />
+        <Point X="18.688" Y="19.75" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Renderer" Type="ASCIIRenderer" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="12.25" Y="9.938" />
+        <Point X="15.917" Y="9.938" Type="JumpStart" />
+        <Point X="16.083" Y="9.938" Type="JumpEnd" />
+        <Point X="31.878" Y="9.938" Type="JumpStart" />
+        <Point X="32.044" Y="9.938" Type="JumpEnd" />
+        <Point X="36.312" Y="9.938" />
+        <Point X="36.312" Y="14.5" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>ABgAAAAAABAABAAAAgIBAEAAAACAAAEQRIGAAAEAAgA=</HashCode>
       <FileName>GameWorld.h</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="Clock" />
-      <Field Name="Colliders" />
-      <Field Name="Drawer" />
-      <Field Name="Keyboard" />
       <Field Name="Physics" />
-      <Field Name="Renderer" />
-      <Field Name="ScoreBoard" />
-      <Field Name="Sound" />
+      <Field Name="Drawer" />
       <Field Name="TextDrawer" />
+      <Field Name="Colliders" />
+      <Field Name="Sound" />
+      <Field Name="Renderer" />
+      <Field Name="Clock" />
+      <Field Name="Keyboard" />
+      <Field Name="ScoreBoard" />
     </ShowAsAssociation>
   </Class>
   <Class Name="Bullet">
-    <Position X="15.25" Y="12.75" Width="2" />
+    <Position X="17.75" Y="30.5" Width="2" />
+    <InheritanceLine Type="Entity">
+      <InheritanceModifierLabel ManuallyPlaced="true">
+        <Position X="0.097" Y="0.053" />
+      </InheritanceModifierLabel>
+    </InheritanceLine>
+    <AssociationLine Name="m_physic" Type="PhysicComponent" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="19.312" Y="30.5" />
+        <Point X="19.312" Y="30.125" />
+        <Point X="19.656" Y="30.125" />
+        <Point X="19.656" Y="24.632" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="m_draw" Type="DrawComponent" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="19.75" Y="32.951" />
+        <Point X="20.917" Y="32.951" Type="JumpStart" />
+        <Point X="21.083" Y="32.951" Type="JumpEnd" />
+        <Point X="22.917" Y="32.951" Type="JumpStart" />
+        <Point X="23.083" Y="32.951" Type="JumpEnd" />
+        <Point X="24.667" Y="32.951" Type="JumpStart" />
+        <Point X="24.833" Y="32.951" Type="JumpEnd" />
+        <Point X="27.938" Y="32.951" />
+        <Point X="27.938" Y="25.709" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="m_collider" Type="ColliderComponent" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="18.5" Y="30.5" />
+        <Point X="18.5" Y="30.125" />
+        <Point X="16.583" Y="30.125" Type="JumpStart" />
+        <Point X="16.417" Y="30.125" Type="JumpEnd" />
+        <Point X="12.125" Y="30.125" />
+        <Point X="12.125" Y="24.382" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AAQQAAAEAAAAAAAAAAAAAAASAAECAAAEAAACAAAQAAA=</HashCode>
       <FileName>Bullet.h</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="m_collider" />
-      <Field Name="m_draw" />
       <Field Name="m_physic" />
+      <Field Name="m_draw" />
+      <Field Name="m_collider" />
     </ShowAsAssociation>
   </Class>
   <Class Name="Ennemy">
-    <Position X="20.25" Y="12.75" Width="2" />
+    <Position X="20" Y="30.5" Width="2" />
+    <AssociationLine Name="m_physic" Type="PhysicComponent" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="21.478" Y="30.5" />
+        <Point X="21.478" Y="24.312" />
+        <Point X="21.046" Y="24.312" Type="JumpStart" />
+        <Point X="20.879" Y="24.312" Type="JumpEnd" />
+        <Point X="20.53" Y="24.312" Type="JumpStart" />
+        <Point X="20.363" Y="24.312" Type="JumpEnd" />
+        <Point X="20" Y="24.312" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="m_draw" Type="DrawComponent" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="21.75" Y="30.5" />
+        <Point X="21.75" Y="24.25" />
+        <Point X="25.75" Y="24.25" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>IAYQAAgEAAAAAAAAAAAAAAACAAECAAAAAAACAAAAAAA=</HashCode>
       <FileName>Ennemy.h</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
+      <Field Name="m_physic" />
       <Field Name="m_collider" />
       <Field Name="m_draw" />
-      <Field Name="m_physic" />
       <Field Name="m_score" />
     </ShowAsAssociation>
   </Class>
   <Class Name="EnnemySpawner">
-    <Position X="0.5" Y="12.75" Width="2.5" />
+    <Position X="4" Y="30.5" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAIAAAAAAAAAAACACAAAEAAAAAAAACAIAAAAA=</HashCode>
       <FileName>EnnemySpawner.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Entity">
-    <Position X="11.75" Y="10.5" Width="1.5" />
+    <Position X="14.5" Y="37.5" Width="1.5" />
+    <AssociationLine Name="m_world" Type="GameWorld" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="14.5" Y="38.312" />
+        <Point X="6.905" Y="38.312" />
+        <Point X="6.905" Y="10.688" />
+        <Point X="10" Y="10.688" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAACAAAAAAAAAAAAAEAAAAAAAACAAAAAAA=</HashCode>
       <FileName>Entity.h</FileName>
@@ -92,28 +174,88 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="Particles">
-    <Position X="7.25" Y="12.75" Width="4.5" />
+    <Position X="10.75" Y="30.5" Width="4.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAQBAAADAAAgAAAAAAgACEEAAAAQAACAAgAAAA=</HashCode>
       <FileName>Particles.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Starship">
-    <Position X="12.5" Y="12.75" Width="2" />
+    <Position X="15.5" Y="26.25" Width="2" />
+    <AssociationLine Name="m_collider" Type="ColliderComponent" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="15.5" Y="28.438" />
+        <Point X="13.688" Y="28.438" />
+        <Point X="13.688" Y="24.382" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="m_draw" Type="DrawComponent" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="17.5" Y="26.75" />
+        <Point X="19.573" Y="26.75" Type="JumpStart" />
+        <Point X="19.74" Y="26.75" Type="JumpEnd" />
+        <Point X="20.363" Y="26.75" Type="JumpStart" />
+        <Point X="20.53" Y="26.75" Type="JumpEnd" />
+        <Point X="20.879" Y="26.75" Type="JumpStart" />
+        <Point X="21.046" Y="26.75" Type="JumpEnd" />
+        <Point X="21.395" Y="26.75" Type="JumpStart" />
+        <Point X="21.561" Y="26.75" Type="JumpEnd" />
+        <Point X="21.667" Y="26.75" Type="JumpStart" />
+        <Point X="21.833" Y="26.75" Type="JumpEnd" />
+        <Point X="26.125" Y="26.75" />
+        <Point X="26.125" Y="25.709" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="m_healthBar" Type="DrawTextComponent" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="17.5" Y="27.812" />
+        <Point X="19.573" Y="27.812" Type="JumpStart" />
+        <Point X="19.74" Y="27.812" Type="JumpEnd" />
+        <Point X="20.363" Y="27.812" Type="JumpStart" />
+        <Point X="20.53" Y="27.812" Type="JumpEnd" />
+        <Point X="20.879" Y="27.812" Type="JumpStart" />
+        <Point X="21.046" Y="27.812" Type="JumpEnd" />
+        <Point X="21.395" Y="27.812" Type="JumpStart" />
+        <Point X="21.561" Y="27.812" Type="JumpEnd" />
+        <Point X="21.667" Y="27.812" Type="JumpStart" />
+        <Point X="21.833" Y="27.812" Type="JumpEnd" />
+        <Point X="27.854" Y="27.812" Type="JumpStart" />
+        <Point X="28.021" Y="27.812" Type="JumpEnd" />
+        <Point X="30.016" Y="27.812" />
+        <Point X="30.016" Y="25.44" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="m_keyboard" Type="Inputs" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="16" Y="26.25" />
+        <Point X="16" Y="2.335" />
+        <Point X="18.5" Y="2.335" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AAQQAAgEAAAABAAAAAABAAACAANCAAgABAACAAAAAAA=</HashCode>
       <FileName>Starship.h</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
+      <Field Name="m_physic" />
       <Field Name="m_collider" />
       <Field Name="m_draw" />
       <Field Name="m_healthBar" />
       <Field Name="m_keyboard" />
-      <Field Name="m_physic" />
     </ShowAsAssociation>
   </Class>
   <Class Name="UIDebug">
-    <Position X="18" Y="12.75" Width="1.5" />
+    <Position X="22.25" Y="30.5" Width="1.5" />
+    <AssociationLine Name="m_fpsDrawer" Type="DrawTextComponent" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="23" Y="30.5" />
+        <Point X="23" Y="30.125" />
+        <Point X="27.854" Y="30.125" Type="JumpStart" />
+        <Point X="28.021" Y="30.125" Type="JumpEnd" />
+        <Point X="30.688" Y="30.125" />
+        <Point X="30.688" Y="25.44" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAAAAAIAAAAAAAAEAAAAAAAACAAAAAAA=</HashCode>
       <FileName>UIDebug.h</FileName>
@@ -123,7 +265,25 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="UIEndText">
-    <Position X="23" Y="12.75" Width="1.5" />
+    <Position X="24" Y="30.5" Width="1.5" />
+    <AssociationLine Name="m_gameOverText" Type="DrawTextComponent" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="25.5" Y="31.309" />
+        <Point X="27.854" Y="31.309" Type="JumpStart" />
+        <Point X="28.021" Y="31.309" Type="JumpEnd" />
+        <Point X="32" Y="31.309" />
+        <Point X="32" Y="25.44" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="m_scoreText" Type="DrawTextComponent" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="25.5" Y="30.873" />
+        <Point X="27.854" Y="30.873" Type="JumpStart" />
+        <Point X="28.021" Y="30.873" Type="JumpEnd" />
+        <Point X="31.375" Y="30.873" />
+        <Point X="31.375" Y="25.44" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAAIAAAAAAAAAAAEAAACAAAACAAAAAAA=</HashCode>
       <FileName>UIEndText.h</FileName>
@@ -134,21 +294,21 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="UIScoreText">
-    <Position X="3.75" Y="12.75" Width="2.75" />
+    <Position X="7.25" Y="30.5" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAEAAACAAAACAAAAAAA=</HashCode>
       <FileName>UIScoreText.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ColliderSystem">
-    <Position X="2.5" Y="16.25" Width="3.25" />
+    <Position X="11.25" Y="20" Width="3.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAIAAAQAAAAAAEAAAAAAAAAAAAAAAAIA=</HashCode>
       <FileName>ColliderSystem.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="DrawSystem">
-    <Position X="0.5" Y="7.25" Width="3" />
+    <Position X="25.5" Y="20.5" Width="3" />
     <TypeIdentifier>
       <HashCode>AAAAAAABAAAAAIAAAQAAAAAAEAAAAAAAAAAAAQAAAIA=</HashCode>
       <FileName>DrawSystem.h</FileName>
@@ -158,7 +318,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="DrawTextSystem">
-    <Position X="4.5" Y="9" Width="3.25" />
+    <Position X="29.75" Y="20.5" Width="3.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAIAAAIAAAQAAAAAAEAAAAAAAAAAAAQAAAIA=</HashCode>
       <FileName>DrawTextSystem.h</FileName>
@@ -168,46 +328,62 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="PhysicSystem">
-    <Position X="11.5" Y="4.25" Width="3" />
+    <Position X="17.25" Y="19.75" Width="3" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAIAAAQAAAAAAEAAAAAAAAAAAAAAAAIA=</HashCode>
       <FileName>PhysicSystem.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SoundSystem">
-    <Position X="7.25" Y="4.75" Width="3.5" />
+    <Position X="0.5" Y="5" Width="3.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAIAACAAAAAAAAAQAAgAAAARAAgAAAAAAAAIAAQ=</HashCode>
       <FileName>SoundSystem.h</FileName>
     </TypeIdentifier>
   </Class>
   <Struct Name="ColliderComponent">
-    <Position X="16" Y="9" Width="3" />
+    <Position X="11.5" Y="22.25" Width="3" />
     <TypeIdentifier>
       <HashCode>CCAAAgAAAAAAgAAAAAAABAAAEAAAAAAAAAAAAAAAAIA=</HashCode>
       <FileName>ColliderComponent.h</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="ComponentTag" />
       <Field Name="Physic" />
+      <Field Name="ComponentTag" />
     </ShowAsAssociation>
   </Struct>
   <Struct Name="DrawComponent">
-    <Position X="13.75" Y="16.5" Width="2.5" />
+    <Position X="25.75" Y="23" Width="2.5" />
+    <AssociationLine Name="Physic" Type="PhysicComponent" FixedToPoint="true">
+      <Path>
+        <Point X="25.75" Y="23.5" />
+        <Point X="21.046" Y="23.5" Type="JumpStart" />
+        <Point X="20.879" Y="23.5" Type="JumpEnd" />
+        <Point X="20.53" Y="23.5" Type="JumpStart" />
+        <Point X="20.363" Y="23.5" Type="JumpEnd" />
+        <Point X="20" Y="23.5" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AAAAIAAAhAAAAAAAAAAABEQAAAAAAAEAQAEAAAAAAAA=</HashCode>
       <FileName>DrawComponent.h</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="Physic" />
+    </ShowAsAssociation>
   </Struct>
   <Struct Name="DrawTextComponent">
-    <Position X="17.25" Y="16" Width="2.5" />
+    <Position X="29.75" Y="23.5" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAABAAAQAgAAAAgAAAA=</HashCode>
       <FileName>DrawTextComponent.h</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_align" />
+    </ShowAsAssociation>
   </Struct>
   <Struct Name="PhysicComponent">
-    <Position X="20" Y="9.5" Width="2.25" />
+    <Position X="17.75" Y="22.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAABgAAAAAAAAAAAAAAAAAAAEAAAEAgA=</HashCode>
       <FileName>PhysicComponent.h</FileName>
@@ -228,14 +404,14 @@
     </TypeIdentifier>
   </Typedef>
   <Enum Name="Tag">
-    <Position X="19.75" Y="6" Width="1.5" />
+    <Position X="8.75" Y="22.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>CAAAAAAAIAQAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Constants.h</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="TextHorzAlign">
-    <Position X="25.5" Y="1.25" Width="1.5" />
+    <Position X="33.5" Y="23.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACACAAAAIAAA=</HashCode>
       <FileName>Constants.h</FileName>
